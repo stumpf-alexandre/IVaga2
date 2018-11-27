@@ -1,0 +1,67 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="ThemeSplash" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Theme splash. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="ThemeUser" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Theme user. -->
+        <item name="colorPrimary">@color/colorDetails</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!-- Base application textInputLayout. -->
+    <style name="edit_text_input_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+    </style>
+    <!-- Base application editTextLogin. -->
+    <style name="edit_text_login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layout_height</item>
+        <item name="android:drawablePadding">@dimen/margin</item>
+        <item name="android:background">@drawable/edittextstyle</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+    </style>
+    <!-- Base application editTextRegister. -->
+    <style name="edit_text_cadastro">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/layout_height</item>
+        <item name="android:drawablePadding">@dimen/margin</item>
+        <item name="android:background">@drawable/edittextstyle</item>
+        <item name="android:ems">10</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+    </style>
+    <!-- Base application editTextUser. -->
+    <style name="edit_text_usuario">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/edittextstyle</item>
+        <item name="android:textSize">@dimen/text_size_list</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <!-- Base application editTextBoldUser. -->
+    <style name="edit_text_bold_usuario">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/edittextstyle</item>
+        <item name="android:textSize">@dimen/text_size_principal</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

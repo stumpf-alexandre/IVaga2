@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "838137795937",
+    "firebase_url": "https://i-vaga-b576b.firebaseio.com",
+    "project_id": "i-vaga-b576b",
+    "storage_bucket": "i-vaga-b576b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838137795937:android:621d5f0cb2af8c4f",
+        "android_client_info": {
+          "package_name": "com.stumpf.als.i_vaga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838137795937-1sd5lr1h82bei3s19fi8bgjgo92gelbq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stumpf.als.i_vaga",
+            "certificate_hash": "eaf2774317e71b78747d27a0c4ae8c1fd915159b"
+          }
+        },
+        {
+          "client_id": "838137795937-9nr5h2t68be24iin07dtjcr6bsddk681.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjnrXVxQQ_TRQhgAjz887PuHUHgoKhWjs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838137795937-9nr5h2t68be24iin07dtjcr6bsddk681.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

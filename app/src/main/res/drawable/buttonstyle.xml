@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid
+        android:color="@color/colorButton"/>
+    <corners
+        android:radius="@dimen/layout_margin_top"/>
+    <padding
+        android:top="@dimen/margin"
+        android:bottom="@dimen/margin"
+        android:left="@dimen/layout_margin"
+        android:right="@dimen/layout_margin"/>
+</shape>

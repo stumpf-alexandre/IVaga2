@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_add_gar"
+        android:orderInCategory="10"
+        android:title="Adicionar Garagem"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/action_add_car"
+        android:orderInCategory="11"
+        android:title="Adicionar Carro"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/action_edit_user"
+        android:orderInCategory="12"
+        android:title="Editar Usuário"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/action_list_gar"
+        android:orderInCategory="100"
+        android:title="Listar Garagens"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="1000"
+        android:title="Desconectar"
+        app:showAsAction="collapseActionView" />
+</menu>
