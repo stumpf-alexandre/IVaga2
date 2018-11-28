@@ -32,13 +32,12 @@
     <string name="button_voltar">Excluir</string>
     <string name="button_sair_upload">Cancelar</string>
     <string name="button_edit">Editar</string>
-    <string name="text_button_cadastro">NÃ£o possui conta? Cadastre-se!</string>
+    <string name="text_button_cadastro">Não possui conta? Cadastre-se!</string>
     <string name="text_button_recuperar_senha">Esqueci a minha senha</string>
     <string name="radio_button">Selecione uma opção para continuar o cadastro:</string>
     <string name="text_garagem">Garagem</string>
     <string name="text_carro">Carro</string>
     <string name="text_button_login">Já possuo cadastro! Login</string>
-    <string name="text_bem_vindo">Bem Vindo:</string>
     <string name="text_lista_garagem">Lista de Garagens</string>
     <string name="text_cadastro_carro">Lista de Carros</string>
     <string name="text_lista_carro">Dados do carro cadastrado</string>
@@ -89,7 +88,9 @@
     <string name="content_description_button_edit_user">Botão para editar dados do usuário</string>
     <string name="content_description_button_sair_edit_user">Botão para sair da pagina de edição de dados do usuário</string>
     <string name="content_description_button_sim">Botão para confirmar exclusão de dados</string>
-    <string name="content_description_button_nao">Botão para não confirmar exclusÃ£o de dados</string>
+    <string name="content_description_button_nao">Botão para não confirmar exclusão de dados</string>
+    <string name="content_description_campo_pesquisa">Campo para pesquesar as garagens por cidade</string>
+    <string name="content_description_button_pesquisa">Botão para pesquisar as garagens</string>
 
     <string name="ja_logado">Usuário logado</string>
     <string name="email_vazio">Campo do e-mail vazio</string>
@@ -132,4 +133,5 @@
     <string name="selecione_imagem">Selecione uma imagem</string>
     <string name="num_excedido">Número de cadastros excedido!</string>
     <string name="aguarde">Aguarde...</string>
+    <string name="pesquisar_por">Pesquisar por Cidade</string>
 </resources>

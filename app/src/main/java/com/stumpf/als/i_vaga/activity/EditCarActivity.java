@@ -48,7 +48,7 @@ public class EditCarActivity extends AppCompatActivity {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             txtOrigem = bundle.getString("origem");
-            if (txtOrigem.equals("Editar Dados Carro") && txtOrigem != null) {
+            if (txtOrigem.equals("editarDadosCarro")) {
                 txtPlaca = bundle.getString("placa");
                 txtKeyCar = bundle.getString("keyCar");
                 txtForeignKeyUser = bundle.getString("foreignKeyUser");
@@ -70,7 +70,6 @@ public class EditCarActivity extends AppCompatActivity {
                             btnEditCarro.setVisibility(View.VISIBLE);
                             btnDeletCarro.setVisibility(View.VISIBLE);
                             Toast.makeText(EditCarActivity.this, getString(R.string.placa_vazio), Toast.LENGTH_LONG).show();
-
                         }
                     }
                 });

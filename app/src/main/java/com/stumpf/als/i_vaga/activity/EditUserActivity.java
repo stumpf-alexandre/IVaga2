@@ -39,6 +39,8 @@ public class EditUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_user);
         nomeEdit = findViewById (R.id.nomeEdit);
         sobrenomeEdit = findViewById(R.id.sobrenomeEdit);
+        senhaEdit = findViewById(R.id.senhaEdit);
+        confirmarEdit = findViewById(R.id.senhaConfirmarEdit);
         btnEditUser = findViewById(R.id.buttonEditUser);
         progressBar = findViewById(R.id.progress_bar_edit);
         progressBar.setVisibility(View.GONE);
@@ -47,49 +49,50 @@ public class EditUserActivity extends AppCompatActivity {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             txtOrigem = bundle.getString("origem");
-            if (txtOrigem.equals("Editar Dados")) {
+            if (txtOrigem.equals("editarDados")) {
                 txtNome = bundle.getString("nome");
                 txtSobrenome = bundle.getString("sobrenome");
                 txtEmail = bundle.getString("email");
                 txtKeyUsuario = bundle.getString("keyUsuario");
                 txtImagem = bundle.getString("imagem");
-                nomeEdit.setText(txtNome.toString());
-                sobrenomeEdit.setText(txtSobrenome.toString());
-            }
-            btnEditUser.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!nomeEdit.getText().toString().equals("") && !sobrenomeEdit.getText().toString().equals("") && !senhaEdit.getText().toString().equals("") && !confirmarEdit.getText().toString().equals("")) {
-                        if (senhaEdit.getText().toString().equals(confirmarEdit.getText().toString())) {
-                            progressBar.setVisibility(View.VISIBLE);
-                            btnEditUser.setVisibility(View.GONE);
-                            usuario = new User();
-                            usuario.setNome(nomeEdit.getText().toString());
-                            usuario.setSobrenome(sobrenomeEdit.getText().toString());
-                            usuario.setEmail(txtEmail);
-                            usuario.setSenha(senhaEdit.getText().toString());
-                            usuario.setKeyUsuario(txtKeyUsuario);
-                            atualizarDados(usuario);
+                nomeEdit.setText(txtNome);
+                sobrenomeEdit.setText(txtSobrenome);
+                btnEditUser.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!nomeEdit.getText().toString().equals("") && !sobrenomeEdit.getText().toString().equals("") && !senhaEdit.getText().toString().equals("") && !confirmarEdit.getText().toString().equals("")) {
+                            if (senhaEdit.getText().toString().equals(confirmarEdit.getText().toString())) {
+                                progressBar.setVisibility(View.VISIBLE);
+                                btnEditUser.setVisibility(View.GONE);
+                                User usuario = new User();
+                                usuario.setNome(nomeEdit.getText().toString());
+                                usuario.setSobrenome(sobrenomeEdit.getText().toString());
+                                usuario.setEmail(txtEmail);
+                                usuario.setSenha(senhaEdit.getText().toString());
+                                usuario.setKeyUsuario(txtKeyUsuario);
+                                usuario.setImagem(txtImagem);
+                                atualizarDados(usuario);
+                            } else {
+                                progressBar.setVisibility(View.GONE);
+                                btnEditUser.setVisibility(View.VISIBLE);
+                                Toast.makeText(EditUserActivity.this, getString(R.string.senha_nao_confirmada), Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             progressBar.setVisibility(View.GONE);
                             btnEditUser.setVisibility(View.VISIBLE);
-                            Toast.makeText(EditUserActivity.this, getString(R.string.senha_nao_confirmada), Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        progressBar.setVisibility(View.GONE);
-                        btnEditUser.setVisibility(View.VISIBLE);
-                        if (nomeEdit.getText().toString().equals("")) {
-                            Toast.makeText(EditUserActivity.this, getString(R.string.nome_vazio), Toast.LENGTH_LONG).show();
-                        } else if (sobrenomeEdit.getText().toString().equals("")) {
-                            Toast.makeText(EditUserActivity.this, getString(R.string.sobrenome_vazio), Toast.LENGTH_LONG).show();
-                        } else if (senhaEdit.getText().toString().equals("")) {
-                            Toast.makeText(EditUserActivity.this, getString(R.string.senha_vazio), Toast.LENGTH_LONG).show();
-                        } else if (confirmarEdit.getText().toString().equals("")) {
-                            Toast.makeText(EditUserActivity.this, getString(R.string.confirmacao_vazio), Toast.LENGTH_LONG).show();
+                            if (nomeEdit.getText().toString().equals("")) {
+                                Toast.makeText(EditUserActivity.this, getString(R.string.nome_vazio), Toast.LENGTH_LONG).show();
+                            } else if (sobrenomeEdit.getText().toString().equals("")) {
+                                Toast.makeText(EditUserActivity.this, getString(R.string.sobrenome_vazio), Toast.LENGTH_LONG).show();
+                            } else if (senhaEdit.getText().toString().equals("")) {
+                                Toast.makeText(EditUserActivity.this, getString(R.string.senha_vazio), Toast.LENGTH_LONG).show();
+                            } else if (confirmarEdit.getText().toString().equals("")) {
+                                Toast.makeText(EditUserActivity.this, getString(R.string.confirmacao_vazio), Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
         }
         else {
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
@@ -109,8 +112,8 @@ public class EditUserActivity extends AppCompatActivity {
         catch (Exception e) {
             erro = getString(R.string.erro_cadastro);
             e.printStackTrace();
+            Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
         return true;
     }
     private void atualizarSenha(String senhaNova){
@@ -126,6 +129,6 @@ public class EditUserActivity extends AppCompatActivity {
     }
     private void abreUser(){
         finish();
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, UserActivity.class));
     }
 }

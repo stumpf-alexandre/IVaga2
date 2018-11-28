@@ -70,11 +70,11 @@ public class UserActivity extends AppCompatActivity {
     private ListView listViewGarage;
     private ArrayAdapter<Car> adapterCar;
     private ArrayAdapter<Garage> adapterGarage;
-    ValueEventListener valueEventListener;
     private ArrayList<Garage> garagens;
     private ArrayList<Car> carros;
     private Garage garagem;
     private Car carro;
+    private Car edit;
     private int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,18 +114,6 @@ public class UserActivity extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {
                 }
             });
-            listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    editPerfilCar();
-                }
-            });
-            listViewGarage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    editPerfilGarage();
-                }
-            });
             fab.setImageResource(R.drawable.ic_photo_camera_black_24dp);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -147,10 +135,31 @@ public class UserActivity extends AppCompatActivity {
             //carregarImage();
             carregarTodosCarros();
             carregarTodasGaragens();
+            listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+
+
+                    edit= adapterCar.getItem(i);
+
+                    editPerfilCar();
+
+
+                }
+            });
+            listViewGarage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    editPerfilGarage();
+
+
+
+                }
+            });
         }
         else {
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-            abrirLogin();
+            finish();
         }
     }
     private void carregarTodosCarros() {
@@ -166,6 +175,7 @@ public class UserActivity extends AppCompatActivity {
                     carro = postSnapshotCar.getValue(Car.class);
                     carros.add(carro);
                 }
+                adapterCar.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -185,22 +195,18 @@ public class UserActivity extends AppCompatActivity {
                     garagem = postSnapshotGar.getValue(Garage.class);
                     garagens.add(garagem);
                 }
+                adapterGarage.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }
-    //@Override
-    //protected void onStop() {
-        //super.onStop();
-        //reference.removeEventListener(valueEventListener);
-    //}
-    //@Override
-    //protected void onStart() {
-        //super.onStart();
-        //reference.addValueEventListener(valueEventListener);
-    //}
+    protected void onResume(){
+        super.onResume();
+        carregarTodosCarros();
+        carregarTodasGaragens();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_user, menu);
@@ -210,24 +216,12 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_add_gar){
-            if (adapterGarage.getCount() <=1) {
-                finish();
-                startActivity(new Intent(UserActivity.this, RegisterGarageActivity.class));
-            }
-            else {
-                abrirLogin();
-                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
-            }
+            finish();
+            startActivity(new Intent(this, RegisterGarageActivity.class));
         }
         else if (id == R.id.action_add_car){
-            if (adapterGarage.getCount() <=1) {
-                finish();
-                startActivity(new Intent(UserActivity.this, RegisterCarActivity.class));
-            }
-            else {
-                abrirLogin();
-                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
-            }
+            finish();
+            startActivity(new Intent(this, RegisterCarActivity.class));
         }
         else if (id == R.id.action_edit_user){
             if (Services.checkInternet(this)) {
@@ -235,7 +229,7 @@ public class UserActivity extends AppCompatActivity {
             }
             else {
                 Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
-                abrirLogin();
+                finish();
             }
         }
         else if (id == R.id.action_list_gar){
@@ -243,8 +237,8 @@ public class UserActivity extends AppCompatActivity {
                 abrirList();
             }
             else {
-                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
-                abrirLogin();
+                Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
+                finish();
             }
         }
         else if (id == R.id.action_exit){
@@ -262,15 +256,15 @@ public class UserActivity extends AppCompatActivity {
                     usuario = postSnapshot.getValue(User.class);
                     final Intent intent = new Intent(UserActivity.this, EditUserActivity.class);
                     final Bundle bundle = new Bundle();
-                    bundle.putString("origem", "Editar Dados");
+                    bundle.putString("origem", "editarDados");
                     bundle.putString("nome", usuario.getNome());
                     bundle.putString("sobrenome", usuario.getSobrenome());
                     bundle.putString("email", usuario.getEmail());
                     bundle.putString("keyUsuario", usuario.getKeyUsuario());
                     bundle.putString("imagem", usuario.getImagem());
                     intent.putExtras(bundle);
-                    finish();
                     startActivity(intent);
+                    finish();
                 }
             }
             @Override
@@ -284,16 +278,16 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    carro = postSnapshot.getValue(Car.class);
+                    edit = postSnapshot.getValue(Car.class);
                     final Intent intent = new Intent(UserActivity.this, EditCarActivity.class);
                     final Bundle bundle = new Bundle();
-                    bundle.putString("origem", "Editar Dados Carro");
-                    bundle.putString("placa", carro.getPlaca());
-                    bundle.putString("keyCar", carro.getKeyCar());
-                    bundle.putString("foreignKeyUser", carro.getForeignKeyUser());
+                    bundle.putString("origem", "editarDadosCarro");
+                    bundle.putString("placa", edit.getPlaca());
+                    bundle.putString("keyCar", edit.getKeyCar());
+                    bundle.putString("foreignKeyUser", edit.getForeignKeyUser());
                     intent.putExtras(bundle);
-                    finish();
                     startActivity(intent);
+                    finish();
                 }
             }
             @Override
@@ -310,7 +304,7 @@ public class UserActivity extends AppCompatActivity {
                     garagem = postSnapshot.getValue(Garage.class);
                     final Intent intent = new Intent(UserActivity.this, EditGarageActivity.class);
                     final Bundle bundle = new Bundle();
-                    bundle.putString("origem", "Editar Dados Garagem");
+                    bundle.putString("origem", "editarDadosGaragem");
                     bundle.putString("rua", garagem.getRua());
                     bundle.putLong("numero", garagem.getNumero());
                     bundle.putString("complemento", garagem.getComplemento());
@@ -321,8 +315,8 @@ public class UserActivity extends AppCompatActivity {
                     bundle.putString("foreingnKeyUser", garagem.getForeingnKeyUser());
                     bundle.putBoolean("garagem", garagem.getGaragem());
                     intent.putExtras(bundle);
-                    finish();
                     startActivity(intent);
+                    finish();
                 }
             }
             @Override

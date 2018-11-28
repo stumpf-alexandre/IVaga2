@@ -25,14 +25,6 @@
             android:textSize="@dimen/titulo_size"
             android:textStyle="bold"
             android:contentDescription="@string/content_description_titulo_edit_usuario"/>
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/keyUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size" />
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
             android:layout_marginTop="@dimen/fab_margin">
@@ -59,7 +51,7 @@
             app:passwordToggleTint="@color/colorPrimary"
             android:layout_marginTop="@dimen/layout_margin">
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/senhaRegister"
+                android:id="@+id/senhaEdit"
                 style="@style/edit_text_cadastro"
                 android:hint="@string/hint_senha"
                 android:inputType="textPassword"
@@ -71,7 +63,7 @@
             app:passwordToggleTint="@color/colorPrimary"
             android:layout_marginTop="@dimen/layout_margin">
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/senhaConfirmarRegister"
+                android:id="@+id/senhaConfirmarEdit"
                 android:layout_marginBottom="@dimen/layout_margin"
                 style="@style/edit_text_cadastro"
                 android:hint="@string/hint_confirmar_senha"

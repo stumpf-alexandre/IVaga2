@@ -5,10 +5,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorbackground"
     tools:context=".activity.ListActivity">
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/expanded_end"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/layout_margin"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtPesq"
+            style="@style/edit_text_cadastro"
+            android:hint="@string/pesquisar_por"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_weight="1"
+            android:inputType="textCapSentences|textCapWords|textAutoComplete"
+            android:contentDescription="@string/content_description_campo_pesquisa"/>
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/btnPesq"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:src="@drawable/search"
+            android:contentDescription="@string/content_description_button_pesquisa"/>
+    </android.support.v7.widget.LinearLayoutCompat>
     <ListView
-        android:id="@+id/listar"
+        android:id="@+id/listPesq"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
+    </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v4.widget.NestedScrollView>

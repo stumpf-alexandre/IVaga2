@@ -70,7 +70,7 @@ public class EditGarageActivity extends AppCompatActivity {
             Intent intent = getIntent();
             Bundle bundle = intent.getExtras();
             txtOrigem = bundle.getString("origem");
-            if (txtOrigem.equals("Editar Dados Garagem")) {
+            if (txtOrigem.equals("editarDadosGaragem")) {
                 txtRua = bundle.getString("rua");
                 txtNumero = bundle.getString("numero");
                 txtComplemento = bundle.getString("complemento");

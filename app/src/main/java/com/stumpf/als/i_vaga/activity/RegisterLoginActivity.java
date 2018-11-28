@@ -110,8 +110,8 @@ public class RegisterLoginActivity extends AppCompatActivity {
         if (buttonGaragem.isChecked()) {
             autenticacao = ConfigurationFirebase.getFirebaseAuth();
             autenticacao.createUserWithEmailAndPassword(
-                    usuario.getEmail().toString(),
-                    usuario.getSenha().toString()
+                    usuario.getEmail(),
+                    usuario.getSenha()
             ).addOnCompleteListener(RegisterLoginActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -131,8 +131,8 @@ public class RegisterLoginActivity extends AppCompatActivity {
         else if (buttonCarro.isChecked()){
             autenticacao = ConfigurationFirebase.getFirebaseAuth();
             autenticacao.createUserWithEmailAndPassword(
-                    usuario.getEmail().toString(),
-                    usuario.getSenha().toString()
+                    usuario.getEmail(),
+                    usuario.getSenha()
             ).addOnCompleteListener(RegisterLoginActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
