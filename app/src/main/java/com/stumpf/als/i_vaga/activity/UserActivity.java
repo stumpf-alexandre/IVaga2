@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +30,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,8 +70,7 @@ public class UserActivity extends AppCompatActivity {
     private ListView listViewGarage;
     private ArrayAdapter<Car> adapterCar;
     private ArrayAdapter<Garage> adapterGarage;
-    ValueEventListener valueEventListenerCar;
-    ValueEventListener valueEventListenerGarage;
+    ValueEventListener valueEventListener;
     private ArrayList<Garage> garagens;
     private ArrayList<Car> carros;
     private Garage garagem;
@@ -111,6 +112,18 @@ public class UserActivity extends AppCompatActivity {
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+            listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    editPerfilCar();
+                }
+            });
+            listViewGarage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    editPerfilGarage();
                 }
             });
             fab.setImageResource(R.drawable.ic_photo_camera_black_24dp);
@@ -158,12 +171,6 @@ public class UserActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                editPerfilCar();
-            }
-        });
     }
     private void carregarTodasGaragens(){
         garagens = new ArrayList<>();
@@ -183,13 +190,17 @@ public class UserActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        listViewGarage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                editPerfilGarage();
-            }
-        });
     }
+    //@Override
+    //protected void onStop() {
+        //super.onStop();
+        //reference.removeEventListener(valueEventListener);
+    //}
+    //@Override
+    //protected void onStart() {
+        //super.onStart();
+        //reference.addValueEventListener(valueEventListener);
+    //}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_user, menu);
@@ -199,12 +210,24 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_add_gar){
-            startActivity(new Intent(UserActivity.this, RegisterGarageActivity.class));
-            finish();
+            if (adapterGarage.getCount() <=1) {
+                finish();
+                startActivity(new Intent(UserActivity.this, RegisterGarageActivity.class));
+            }
+            else {
+                abrirLogin();
+                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+            }
         }
         else if (id == R.id.action_add_car){
-            startActivity(new Intent(UserActivity.this, RegisterCarActivity.class));
-            finish();
+            if (adapterGarage.getCount() <=1) {
+                finish();
+                startActivity(new Intent(UserActivity.this, RegisterCarActivity.class));
+            }
+            else {
+                abrirLogin();
+                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+            }
         }
         else if (id == R.id.action_edit_user){
             if (Services.checkInternet(this)) {

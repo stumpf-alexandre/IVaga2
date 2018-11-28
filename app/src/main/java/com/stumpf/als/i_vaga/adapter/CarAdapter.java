@@ -28,4 +28,8 @@ public class CarAdapter extends ArrayAdapter<Car> {
         }
         return view;
     }
+    @Override
+    public int getCount() {
+        return carros.size();
+    }
 }

@@ -45,9 +45,9 @@ public class LoginActivity extends AppCompatActivity {
         progressBarLogin.setVisibility(View.GONE);
         btnLogin.setVisibility(View.VISIBLE);
         permissao();
-        final TextInputEditText editText = new TextInputEditText(LoginActivity.this);
+        final TextInputEditText editText = new TextInputEditText(this);
         editText.setHint(getString(R.string.exemplo_email));
-        if (Services.checkInternet(LoginActivity.this)) {
+        if (Services.checkInternet(this)) {
             if (userLogado()) {
                 finish();
                 startActivity(new Intent(getBaseContext(), UserActivity.class));

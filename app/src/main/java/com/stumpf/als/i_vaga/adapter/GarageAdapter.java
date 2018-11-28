@@ -41,4 +41,8 @@ public class GarageAdapter extends ArrayAdapter<Garage> {
         }
         return view;
     }
+    @Override
+    public int getCount() {
+        return garagens.size();
+    }
 }
