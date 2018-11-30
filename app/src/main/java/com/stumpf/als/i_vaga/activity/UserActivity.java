@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -30,7 +29,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -217,7 +215,7 @@ public class UserActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_add_gar){
             finish();
-            startActivity(new Intent(this, RegisterGarageActivity.class));
+            startActivity(new Intent(this, RegisterGaragActivity.class));
         }
         else if (id == R.id.action_add_car){
             finish();
@@ -228,7 +226,7 @@ public class UserActivity extends AppCompatActivity {
                 editPerfilUser();
             }
             else {
-                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
                 finish();
             }
         }

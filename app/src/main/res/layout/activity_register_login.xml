@@ -67,7 +67,7 @@
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
-            android:layout_marginTop="@dimen/layout_margin">
+            android:layout_marginTop="@dimen/um">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/nomeRegister"
                 style="@style/edit_text_cadastro"

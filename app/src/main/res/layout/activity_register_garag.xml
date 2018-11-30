@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/fab_margin"
     android:paddingRight="@dimen/fab_margin"
     android:paddingTop="@dimen/fab_margin"
-    tools:context=".activity.RegisterGarageActivity">
+    tools:context=".activity.RegisterGaragActivity">
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +28,8 @@
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
             android:layout_marginTop="@dimen/layout_margin">
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/ruaGaragem"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/ruaRegisterGarage"
                 style="@style/edit_text_cadastro"
                 android:gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_home_black_24dp"
@@ -47,7 +47,7 @@
                 android:layout_weight="2"
                 android:layout_marginRight="@dimen/um">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/numeroGaragem"
+                    android:id="@+id/numeroRegisterGarage"
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_numero"
@@ -59,7 +59,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/um">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/complementoGaragem"
+                    android:id="@+id/complementoRegisterGarage"
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_complemento"
@@ -77,7 +77,7 @@
                 android:layout_weight="1"
                 android:layout_marginRight="@dimen/um">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/bairroGaragem"
+                    android:id="@+id/bairroRegisterGarage"
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_bairro"
@@ -89,7 +89,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/um">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/cidadeGaragem"
+                    android:id="@+id/cidadeRegisterGarage"
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_cidade"
@@ -101,7 +101,7 @@
             style="@style/edit_text_input_layout"
             android:layout_marginTop="@dimen/margin">
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/valoGaragem"
+                android:id="@+id/valoRegisterGarage"
                 style="@style/edit_text_cadastro"
                 android:drawableLeft="@drawable/ic_attach_money_black_24dp"
                 android:hint="@string/hint_valor"
@@ -114,11 +114,12 @@
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dois">
             <android.support.v7.widget.SwitchCompat
-                android:id="@+id/switch_on_off"
-                android:layout_width="@dimen/padding"
-                android:layout_height="@dimen/expanded_start"/>
+                android:id="@+id/switch_on_offRegisterGarage"
+                android:layout_width="@dimen/expanded_start"
+                android:layout_height="@dimen/expanded_start"
+                android:layout_marginLeft="@dimen/margin"/>
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/on_off"
+                android:id="@+id/on_offRegisterGarage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -133,7 +134,7 @@
             android:gravity="center"
             android:layout_gravity="center">
             <android.support.v7.widget.CardView
-                android:id="@+id/cadastroGaragem"
+                android:id="@+id/btnRegisterGaragem"
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:clickable="true"
@@ -161,7 +162,7 @@
                 </android.support.v7.widget.LinearLayoutCompat>
             </android.support.v7.widget.CardView>
             <android.support.v4.widget.ContentLoadingProgressBar
-                android:id="@+id/progress_bar_register_garagem"
+                android:id="@+id/progres_bar_register_garagem"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="@dimen/layout_height"
                 android:layout_height="@dimen/layout_height"

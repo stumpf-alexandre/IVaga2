@@ -65,9 +65,9 @@ public class RegisterCarActivity extends AppCompatActivity {
             String key = reference.push().getKey();
             carro.setKeyCar(key);
             reference.child(key).setValue(car);
+            finish();
             startActivity(new Intent(this, UserActivity.class));
             Toast.makeText(this, getString(R.string.dados_carro), Toast.LENGTH_LONG).show();
-            finish();
             emptyEditText(placa);
             return true;
         } catch (Exception e) {

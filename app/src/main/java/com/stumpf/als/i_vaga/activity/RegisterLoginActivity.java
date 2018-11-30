@@ -107,18 +107,18 @@ public class RegisterLoginActivity extends AppCompatActivity {
         }
     }
     private void cadastroLogin(){
-        if (buttonGaragem.isChecked()) {
+        if (buttonCarro.isChecked()){
             autenticacao = ConfigurationFirebase.getFirebaseAuth();
             autenticacao.createUserWithEmailAndPassword(
-                    usuario.getEmail(),
-                    usuario.getSenha()
-            ).addOnCompleteListener(RegisterLoginActivity.this, new OnCompleteListener<AuthResult>() {
+                usuario.getEmail(),
+                usuario.getSenha()
+            ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         insereCadastroLogin(usuario);
                         finish();
-                        startActivity(new Intent(RegisterLoginActivity.this, RegisterGarageActivity.class));
+                        startActivity(new Intent(RegisterLoginActivity.this, RegisterCarActivity.class));
                     } else {
                         progressBar.setVisibility(View.GONE);
                         btnCadastroLogin.setVisibility(View.VISIBLE);
@@ -128,18 +128,18 @@ public class RegisterLoginActivity extends AppCompatActivity {
                 }
             });
         }
-        else if (buttonCarro.isChecked()){
+        else if (buttonGaragem.isChecked()) {
             autenticacao = ConfigurationFirebase.getFirebaseAuth();
             autenticacao.createUserWithEmailAndPassword(
                     usuario.getEmail(),
                     usuario.getSenha()
-            ).addOnCompleteListener(RegisterLoginActivity.this, new OnCompleteListener<AuthResult>() {
+            ).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         insereCadastroLogin(usuario);
                         finish();
-                        startActivity(new Intent(RegisterLoginActivity.this, RegisterCarActivity.class));
+                        startActivity(new Intent(RegisterLoginActivity.this, RegisterGaragActivity.class));
                     } else {
                         progressBar.setVisibility(View.GONE);
                         btnCadastroLogin.setVisibility(View.VISIBLE);

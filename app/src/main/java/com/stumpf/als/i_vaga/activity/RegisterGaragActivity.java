@@ -16,7 +16,7 @@ import com.stumpf.als.i_vaga.DAO.ConfigurationFirebase;
 import com.stumpf.als.i_vaga.R;
 import com.stumpf.als.i_vaga.classes.Garage;
 import com.stumpf.als.i_vaga.helper.Services;
-public class RegisterGarageActivity extends AppCompatActivity {
+public class RegisterGaragActivity extends AppCompatActivity {
     private TextInputEditText txtrua;
     private TextInputEditText txtnumero;
     private TextInputEditText txtcomplemento;
@@ -25,37 +25,39 @@ public class RegisterGarageActivity extends AppCompatActivity {
     private TextInputEditText txtvalor;
     private SwitchCompat garagemOnOff;
     private AppCompatTextView txtOnOff;
+    private boolean btn;
+    private String txt;
     private ContentLoadingProgressBar progressBarGarage;
     private FirebaseAuth autenticacao;
     private DatabaseReference reference;
     private Garage garagem;
     private String emailLogado;
-    private CardView btnCadastrarLocalizacao;
+    private CardView btnCadastrar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_garage);
+        setContentView(R.layout.activity_register_garag);
         autenticacao = ConfigurationFirebase.getFirebaseAuth();
-        txtrua = findViewById(R.id.ruaGaragem);
-        txtnumero = findViewById(R.id.numeroGaragem);
-        txtcomplemento = findViewById(R.id.complementoGaragem);
-        txtbairro = findViewById(R.id.bairroGaragem);
-        txtcidade = findViewById(R.id.cidadeGaragem);
-        txtvalor = findViewById(R.id.valoGaragem);
-        garagemOnOff = findViewById(R.id.switch_on_off);
-        txtOnOff = findViewById(R.id.on_off);
-        btnCadastrarLocalizacao = findViewById(R.id.cadastroGaragem);
-        progressBarGarage = findViewById(R.id.progress_bar_register_garagem);
-        btnCadastrarLocalizacao.setVisibility(View.VISIBLE);
+        txtrua = findViewById(R.id.ruaRegisterGarage);
+        txtnumero = findViewById(R.id.numeroRegisterGarage);
+        txtcomplemento = findViewById(R.id.complementoRegisterGarage);
+        txtbairro = findViewById(R.id.bairroRegisterGarage);
+        txtcidade = findViewById(R.id.cidadeRegisterGarage);
+        txtvalor = findViewById(R.id.valoRegisterGarage);
+        garagemOnOff = findViewById(R.id.switch_on_offRegisterGarage);
+        txtOnOff = findViewById(R.id.on_offRegisterGarage);
+        btnCadastrar = findViewById(R.id.btnRegisterGaragem);
+        progressBarGarage = findViewById(R.id.progres_bar_register_garagem);
+        btnCadastrar.setVisibility(View.VISIBLE);
         progressBarGarage.setVisibility(View.GONE);
         emailLogado = autenticacao.getCurrentUser().getEmail();
         if (Services.checkInternet(this)) {
-            btnCadastrarLocalizacao.setOnClickListener(new View.OnClickListener() {
+            btnCadastrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (!txtrua.getText().toString().equals("") && !txtnumero.getText().toString().equals("") && !txtbairro.getText().toString().equals("") && !txtcidade.getText().toString().equals("") && !txtvalor.getText().toString().equals("")) {
                         progressBarGarage.setVisibility(View.VISIBLE);
-                        btnCadastrarLocalizacao.setVisibility(View.GONE);
+                        btnCadastrar.setVisibility(View.GONE);
                         garagem = new Garage();
                         garagem.setRua(txtrua.getText().toString());
                         garagem.setNumero(Long.parseLong(txtnumero.getText().toString()));
@@ -67,43 +69,45 @@ public class RegisterGarageActivity extends AppCompatActivity {
                         garagem.setBairro(txtbairro.getText().toString());
                         garagem.setCidade(txtcidade.getText().toString());
                         garagem.setValor(Double.parseDouble(txtvalor.getText().toString()));
-                        garagemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if (isChecked) {
-                                    garagem.setGaragem(true);
-                                    txtOnOff.setText(getString(R.string.on));
-                                } else {
-                                    garagem.setGaragem(false);
-                                    txtOnOff.setText(getString(R.string.off));
-                                }
-                            }
-                        });
+                        garagem.setGaragem(btn);
+                        txtOnOff.setText(txt);
                         garagem.setForeingnKeyUser(emailLogado);
                         insereCadastroGaragem(garagem);
                     } else {
-                        btnCadastrarLocalizacao.setVisibility(View.VISIBLE);
+                        btnCadastrar.setVisibility(View.VISIBLE);
                         progressBarGarage.setVisibility(View.GONE);
                         if (txtrua.getText().toString().equals("")) {
-                            Toast.makeText(RegisterGarageActivity.this, getString(R.string.rua_vazio), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterGaragActivity.this, getString(R.string.rua_vazio), Toast.LENGTH_LONG).show();
                         }
                         else if (txtnumero.getText().toString().equals("")) {
-                            Toast.makeText(RegisterGarageActivity.this, getString(R.string.numero_vazio), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterGaragActivity.this, getString(R.string.numero_vazio), Toast.LENGTH_LONG).show();
                         }
                         else if (txtbairro.getText().toString().equals("")) {
-                            Toast.makeText(RegisterGarageActivity.this, getString(R.string.bairro_vazio), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterGaragActivity.this, getString(R.string.bairro_vazio), Toast.LENGTH_LONG).show();
                         }
                         else if (txtcidade.getText().toString().equals("")) {
-                            Toast.makeText(RegisterGarageActivity.this, getString(R.string.cidade_vazio), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterGaragActivity.this, getString(R.string.cidade_vazio), Toast.LENGTH_LONG).show();
                         }
                         else if (txtvalor.getText().toString().equals("")) {
-                            Toast.makeText(RegisterGarageActivity.this, getString(R.string.valor_vazio), Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterGaragActivity.this, getString(R.string.valor_vazio), Toast.LENGTH_LONG).show();
                         }
                     }
                 }
             });
+            garagemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        btn = true;
+                        txt = getString(R.string.on);
+                    } else {
+                        btn = false;
+                        txt = getString(R.string.off);
+                    }
+                }
+            });
         } else {
-            btnCadastrarLocalizacao.setVisibility(View.VISIBLE);
+            btnCadastrar.setVisibility(View.VISIBLE);
             progressBarGarage.setVisibility(View.GONE);
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
             emptyEditText(txtrua, txtnumero, txtcomplemento, txtbairro, txtcidade, txtvalor);
@@ -116,12 +120,13 @@ public class RegisterGarageActivity extends AppCompatActivity {
             String key = reference.push().getKey();
             garagem.setKeyGaragem(key);
             reference.child(key).setValue(garagem);
-            startActivity(new Intent(this, UserActivity.class));
             finish();
+            startActivity(new Intent(this, UserActivity.class));
+            Toast.makeText(this, getString(R.string.dados_garagem), Toast.LENGTH_LONG).show();
             emptyEditText(txtrua, txtnumero, txtcomplemento, txtbairro, txtcidade, txtvalor);
             return true;
         } catch (Exception e) {
-            btnCadastrarLocalizacao.setVisibility(View.VISIBLE);
+            btnCadastrar.setVisibility(View.VISIBLE);
             progressBarGarage.setVisibility(View.GONE);
             Toast.makeText(this, getString(R.string.erro_dados), Toast.LENGTH_LONG).show();
             e.printStackTrace();
