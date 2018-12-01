@@ -87,12 +87,12 @@
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/layout_margin"
                 android:layout_marginBottom="@dimen/layout_margin"/>
-            <ListView
-                android:id="@+id/listViewListCar"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleViewListCar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal">
-            </ListView>
+            </android.support.v7.widget.RecyclerView>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,12 +103,12 @@
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/layout_margin"
                 android:layout_marginBottom="@dimen/layout_margin"/>
-            <ListView
-                android:id="@+id/listViewListGarage"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleViewListGarage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal">
-            </ListView>
+            </android.support.v7.widget.RecyclerView>
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v4.widget.NestedScrollView>
     <android.support.design.widget.FloatingActionButton

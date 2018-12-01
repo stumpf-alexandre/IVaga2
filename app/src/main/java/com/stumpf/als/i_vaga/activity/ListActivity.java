@@ -65,6 +65,7 @@ public class ListActivity extends AppCompatActivity {
         }
         else {
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
+            finish();
         }
     }
     private void eventEdit() {
@@ -87,6 +88,21 @@ public class ListActivity extends AppCompatActivity {
         Query query;
         if (txt.equals("")){
             query = reference.child("usuarios/").child("garagens").orderByChild("cidade");
+            garagens.clear();
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        Garage gar = postSnapshot.getValue(Garage.class);
+                        garagens.add(gar);
+                    }
+                    adapterGarageList = new ArrayAdapter<Garage>(ListActivity.this, android.R.layout.simple_list_item_1, garagens);
+                    list.setAdapter(adapterGarageList);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
         }
         else {
             query = reference.child("usuarios/").child("garagens").orderByChild("cidade").startAt(txt).endAt(txt + "uf8ff");

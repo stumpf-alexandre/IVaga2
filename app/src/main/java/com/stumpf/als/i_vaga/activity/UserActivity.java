@@ -13,6 +13,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.Menu;
@@ -49,6 +51,8 @@ import com.stumpf.als.i_vaga.helper.DialogProgress;
 import com.stumpf.als.i_vaga.helper.Services;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
+
 public class UserActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private DatabaseReference reference;
@@ -64,12 +68,14 @@ public class UserActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
     private FloatingActionButton fab;
-    private ListView listViewCar;
-    private ListView listViewGarage;
-    private ArrayAdapter<Car> adapterCar;
-    private ArrayAdapter<Garage> adapterGarage;
-    private ArrayList<Garage> garagens;
-    private ArrayList<Car> carros;
+    private RecyclerView recyclerViewGaragem;
+    private RecyclerView recyclerViewCarro;
+    private GarageAdapter adapterGarage;
+    private CarAdapter adapterCar;
+    private List<Garage> garagens;
+    private List<Car> carros;
+    private LinearLayoutManager linearManagerCar;
+    private LinearLayoutManager linearManagerGarage;
     private Garage garagem;
     private Car carro;
     private Car edit;
@@ -78,7 +84,6 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        permissao();
         autenticacao = ConfigurationFirebase.getFirebaseAuth();
         reference = ConfigurationFirebase.getFirebase();
         storageReference = ConfigurationFirebase.getFirebaseStorageReference();
@@ -94,8 +99,8 @@ public class UserActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fab = findViewById(R.id.floatingButton);
         fab.setVisibility(View.VISIBLE);
-        listViewCar = findViewById(R.id.listViewListCar);
-        listViewGarage = findViewById(R.id.listViewListGarage);
+        recyclerViewCarro = findViewById(R.id.recycleViewListCar);
+        recyclerViewGaragem = findViewById(R.id.recycleViewListGarage);
         if (Services.checkInternet(this)) {
             reference = FirebaseDatabase.getInstance().getReference();
             reference.child("usuarios").orderByChild("email").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
@@ -133,27 +138,6 @@ public class UserActivity extends AppCompatActivity {
             //carregarImage();
             carregarTodosCarros();
             carregarTodasGaragens();
-            listViewCar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-
-
-                    edit= adapterCar.getItem(i);
-
-                    editPerfilCar();
-
-
-                }
-            });
-            listViewGarage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    editPerfilGarage();
-
-
-
-                }
-            });
         }
         else {
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
@@ -161,34 +145,36 @@ public class UserActivity extends AppCompatActivity {
         }
     }
     private void carregarTodosCarros() {
+        recyclerViewCarro.setHasFixedSize(true);
+        linearManagerCar = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerViewCarro.setLayoutManager(linearManagerCar);
         carros = new ArrayList<>();
-        adapterCar = new CarAdapter(this, carros);
-        listViewCar.setAdapter(adapterCar);
         reference = FirebaseDatabase.getInstance().getReference();
         reference.child("usuarios/").child("carros").orderByChild("foreignKeyUser").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                carros.clear();
                 for (DataSnapshot postSnapshotCar : dataSnapshot.getChildren()){
                     carro = postSnapshotCar.getValue(Car.class);
                     carros.add(carro);
                 }
-                adapterCar.notifyDataSetChanged();
+                adapterGarage.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+        adapterCar = new CarAdapter(carros, this);
+        recyclerViewCarro.setAdapter(adapterCar);
     }
     private void carregarTodasGaragens(){
+        recyclerViewGaragem.setHasFixedSize(true);
+        linearManagerGarage = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerViewGaragem.setLayoutManager(linearManagerGarage);
         garagens = new ArrayList<>();
-        adapterGarage = new GarageAdapter(this, garagens);
-        listViewGarage.setAdapter(adapterGarage);
         reference = FirebaseDatabase.getInstance().getReference();
         reference.child("usuarios/").child("garagens").orderByChild("foreingnKeyUser").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                garagens.clear();
                 for (DataSnapshot postSnapshotGar : dataSnapshot.getChildren()){
                     garagem = postSnapshotGar.getValue(Garage.class);
                     garagens.add(garagem);
@@ -199,6 +185,8 @@ public class UserActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+        adapterGarage = new GarageAdapter(garagens, this);
+        recyclerViewGaragem.setAdapter(adapterGarage);
     }
     protected void onResume(){
         super.onResume();
@@ -214,12 +202,22 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_add_gar){
-            finish();
-            startActivity(new Intent(this, RegisterGaragActivity.class));
+            if (adapterGarage.getItemCount() <= 2) {
+                finish();
+                startActivity(new Intent(this, RegisterGaragActivity.class));
+            }
+            else {
+                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+            }
         }
         else if (id == R.id.action_add_car){
-            finish();
-            startActivity(new Intent(this, RegisterCarActivity.class));
+            if (adapterCar.getItemCount() <= 1) {
+                finish();
+                startActivity(new Intent(this, RegisterCarActivity.class));
+            }
+            else {
+                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+            }
         }
         else if (id == R.id.action_edit_user){
             if (Services.checkInternet(this)) {
@@ -429,12 +427,5 @@ public class UserActivity extends AppCompatActivity {
         }
         Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
         return true;
-    }
-    public void permissao(){
-        int permission_all = 1;
-        String [] permission = {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE};
-        ActivityCompat.requestPermissions(this, permission, permission_all);
     }
 }

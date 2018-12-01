@@ -1,39 +1,95 @@
 package com.stumpf.als.i_vaga.adapter;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.stumpf.als.i_vaga.R;
 import com.stumpf.als.i_vaga.classes.Garage;
 import java.util.ArrayList;
-public class GarageAdapter extends ArrayAdapter<Garage> {
-    private ArrayList<Garage> garagens;
-    private Context c;
-    public GarageAdapter(Context c, ArrayList<Garage> object) {
-        super(c, 0, object);
-        this.c = c;
-        this.garagens = object;
+import java.util.List;
+public class GarageAdapter extends RecyclerView.Adapter<GarageAdapter.ViewHolder> {
+    private List<Garage> garagemList;
+    private Context context;
+    private DatabaseReference reference;
+    private List<Garage> garagens;
+    private Garage garagem;
+    public GarageAdapter(List<Garage> l, Context c) {
+        context = c;
+        garagemList = l;
     }
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = null;
-        if (garagens != null) {
-            LayoutInflater inflater = (LayoutInflater) c.getSystemService(c.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.detail_list_garage, parent, false);
-            AppCompatTextView txtRua = view.findViewById(R.id.ruaLista);
-            AppCompatTextView txtNumero = view.findViewById(R.id.numeroList);
-            AppCompatTextView txtComplemento = view.findViewById(R.id.complementoLista);
-            AppCompatTextView txtBairro = view.findViewById(R.id.bairroLista);
-            AppCompatTextView txtValor = view.findViewById(R.id.valorLista);
-            Garage garagem = garagens.get(position);
-            txtRua.setText(garagem.getRua());
-            txtNumero.setText(String.valueOf(garagem.getNumero()));
-            txtComplemento.setText(garagem.getComplemento());
-            txtBairro.setText(garagem.getBairro());
-            txtValor.setText(String.valueOf(garagem.getValor()));
+    public GarageAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.detail_list_garage, viewGroup, false);
+        return new GarageAdapter.ViewHolder(itemView);
+    }
+    @Override
+    public void onBindViewHolder(final GarageAdapter.ViewHolder holder, int position) {
+        final Garage item = garagemList.get(position);
+        garagens = new ArrayList<>();
+        reference = FirebaseDatabase.getInstance().getReference();
+        reference.child("garagens").orderByChild("keyGaragem").equalTo(item.getKeyGaragem()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                garagens.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    garagem = postSnapshot.getValue(Garage.class);
+                    garagens.add(garagem);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        holder.txtRua.setText(context.getString(R.string.hint_rua) + " " + item.getRua());
+        holder.txtNumero.setText(context.getString(R.string.hint_numero) + " " + String.valueOf(item.getNumero()));
+        holder.txtBairro.setText(context.getString(R.string.hint_bairro) + " " + item.getBairro());
+        if (item.getComplemento().equals("")) {
+            holder.txtComplementoGaragem.setText("");
+        } else {
+            holder.txtComplementoGaragem.setText((context.getString(R.string.hint_complemento)) + " " + item.getComplemento());
         }
-        return view;
+        holder.txtValorGaragem.setText((context.getString(R.string.diaria)) + " " + (context.getString(R.string.dinheiro)) + String.valueOf(item.getValor()) + ",00");
+        if (item.getGaragem()) {
+            holder.txtMenssagem.setText(context.getString(R.string.garagem_on));
+        } else {
+            holder.txtMenssagem.setText(context.getString(R.string.garagem_off));
+        }
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+    @Override
+    public int getItemCount() {
+        return garagemList.size();
+    }
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        protected AppCompatTextView txtRua;
+        protected AppCompatTextView txtNumero;
+        protected AppCompatTextView txtBairro;
+        protected AppCompatTextView txtComplementoGaragem;
+        protected AppCompatTextView txtValorGaragem;
+        protected AppCompatTextView txtMenssagem;
+        protected LinearLayoutCompat linearLayout;
+        public ViewHolder(View itemView) {
+            super(itemView);
+            txtRua = itemView.findViewById(R.id.ruaLista);
+            txtNumero = itemView.findViewById(R.id.numeroList);
+            txtBairro = itemView.findViewById(R.id.bairroLista);
+            txtComplementoGaragem = itemView.findViewById(R.id.complementoLista);
+            txtValorGaragem = itemView.findViewById(R.id.valorLista);
+            txtMenssagem = itemView.findViewById(R.id.txtGaragem);
+            linearLayout = itemView.findViewById(R.id.listaGaragem);
+        }
     }
 }
