@@ -22,7 +22,6 @@ public class EditCarActivity extends AppCompatActivity {
     private TextInputEditText placa;
     private CardView btnEditCarro;
     private CardView btnDeletCarro;
-    private String txtOrigem = "";
     private String txtPlaca = "";
     private String txtKeyCar = "";
     private String txtForeignKeyUser = "";
@@ -36,7 +35,7 @@ public class EditCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_car);
         autenticacao = ConfigurationFirebase.getFirebaseAuth();
-        placa = findViewById(R.id.placaRegisterCarro);
+        placa = findViewById(R.id.placaEditCarro);
         btnEditCarro = findViewById(R.id.editCarro);
         btnDeletCarro = findViewById(R.id.deletCarro);
         progressBar = findViewById(R.id.progress_bar_register_car);
@@ -46,14 +45,11 @@ public class EditCarActivity extends AppCompatActivity {
         emailLogado = autenticacao.getCurrentUser().getEmail();
         if (Services.checkInternet(this)) {
             Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-            txtOrigem = bundle.getString("origem");
-            if (txtOrigem.equals("editarDadosCarro")) {
-                txtPlaca = bundle.getString("placa");
-                txtKeyCar = bundle.getString("keyCar");
-                txtForeignKeyUser = bundle.getString("foreignKeyUser");
-                placa.setText(txtPlaca);
-                btnEditCarro.setOnClickListener(new View.OnClickListener() {
+            txtPlaca = intent.getStringExtra("placa");
+            txtKeyCar = intent.getStringExtra("keyCar");
+            txtForeignKeyUser = intent.getStringExtra("foreignKeyUser");
+            placa.setText(txtPlaca);
+            btnEditCarro.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!placa.getText().toString().equals("")) {
@@ -79,7 +75,6 @@ public class EditCarActivity extends AppCompatActivity {
                         abrirDialogDelete();
                     }
                 });
-            }
         }
         else {
             btnEditCarro.setVisibility(View.VISIBLE);
@@ -89,26 +84,22 @@ public class EditCarActivity extends AppCompatActivity {
             finish();
             emptyEditText(placa);
         }
-
-
     }
     private boolean atualizarDados(final Car carro){
         btnEditCarro.setEnabled(false);
-        String erro = "";
         try {
             reference = ConfigurationFirebase.getFirebase().child("usuarios/").child("carros");
-            reference.child(txtForeignKeyUser).setValue(carro);
-            Toast.makeText(this, getString(R.string.edit_dados) + erro, Toast.LENGTH_LONG).show();
+            reference.child(txtKeyCar).setValue(carro);
+            Toast.makeText(this, getString(R.string.edit_dados), Toast.LENGTH_LONG).show();
             abreUser();
         }
         catch (Exception e) {
             btnEditCarro.setVisibility(View.VISIBLE);
             btnDeletCarro.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-            erro = getString(R.string.erro_cadastro);
+            Toast.makeText(this, getString(R.string.not_edit_dados), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
         return true;
     }
     private void removerDadosCarro(){
@@ -137,6 +128,7 @@ public class EditCarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 removerDadosCarro();
+                Toast.makeText(EditCarActivity.this, getString(R.string.delet_dados), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }
         });
@@ -144,6 +136,7 @@ public class EditCarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abreUser();
+                Toast.makeText(EditCarActivity.this, getString(R.string.not_edit_dados), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }
         });

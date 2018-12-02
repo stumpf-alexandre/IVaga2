@@ -1,5 +1,8 @@
 package com.stumpf.als.i_vaga.adapter;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.stumpf.als.i_vaga.R;
+import com.stumpf.als.i_vaga.activity.EditCarActivity;
 import com.stumpf.als.i_vaga.classes.Car;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +39,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder>{
         final Car item = carroList.get(position);
         carros = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("carros").orderByChild("keyCarro").equalTo(item.getKeyCar()).addValueEventListener(new ValueEventListener() {
+        reference.child("carros").orderByChild("keyCar").equalTo(item.getKeyCar()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 carros.clear();
@@ -49,10 +53,15 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder>{
             }
         });
         holder.txtPlacaCarro.setText((context.getString(R.string.hint_placa)) + " " + item.getPlaca());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.txtPlacaCarro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, EditCarActivity.class);
+                intent.putExtra("placa", item.getPlaca());
+                intent.putExtra("keyCar", item.getKeyCar());
+                intent.putExtra("foreignKeyUser", item.getForeignKeyUser());
+                context.startActivity(intent);
+                ((Activity)context).finish();
             }
         });
     }

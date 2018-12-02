@@ -38,8 +38,8 @@
     <string name="text_garagem">Garagem</string>
     <string name="text_carro">Carro</string>
     <string name="text_button_login">Já possuo cadastro! Login</string>
-    <string name="text_lista_garagem">Lista de Garagens</string>
-    <string name="text_cadastro_carro">Lista de Carros</string>
+    <string name="text_lista_garagem">Suas Garagens</string>
+    <string name="text_cadastro_carro">Seus Carros</string>
     <string name="text_lista_carro">Dados do carro cadastrado</string>
     <string name="usuario">Usuario logado</string>
     <string name="garagem_on">Garagem aberta</string>
@@ -129,6 +129,7 @@
     <string name="receber_mensagem">Em instantes vôce recebera um e-mail!</string>
     <string name="exemplo_email">exemplo@exemplo.com</string>
     <string name="edit_dados">Dados alterados com sucesso</string>
+    <string name="not_edit_dados">Dados não alterados</string>
     <string name="delet_dados">Dados deletados com sucesso</string>
     <string name="selecione_imagem">Selecione uma imagem</string>
     <string name="num_excedido">Número de cadastros excedido!</string>

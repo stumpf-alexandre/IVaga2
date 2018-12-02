@@ -1,5 +1,4 @@
 package com.stumpf.als.i_vaga.activity;
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
@@ -20,10 +18,7 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,7 +47,6 @@ import com.stumpf.als.i_vaga.helper.Services;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 public class UserActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private DatabaseReference reference;
@@ -157,7 +151,7 @@ public class UserActivity extends AppCompatActivity {
                     carro = postSnapshotCar.getValue(Car.class);
                     carros.add(carro);
                 }
-                adapterGarage.notifyDataSetChanged();
+                adapterCar.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -188,11 +182,6 @@ public class UserActivity extends AppCompatActivity {
         adapterGarage = new GarageAdapter(garagens, this);
         recyclerViewGaragem.setAdapter(adapterGarage);
     }
-    protected void onResume(){
-        super.onResume();
-        carregarTodosCarros();
-        carregarTodasGaragens();
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_user, menu);
@@ -202,22 +191,22 @@ public class UserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_add_gar){
-            if (adapterGarage.getItemCount() <= 2) {
+            //if (adapterGarage.getItemCount() <= 2) {
                 finish();
                 startActivity(new Intent(this, RegisterGaragActivity.class));
-            }
-            else {
-                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
-            }
+            //}
+            //else {
+                //Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+            //}
         }
         else if (id == R.id.action_add_car){
-            if (adapterCar.getItemCount() <= 1) {
+            //if (adapterCar.getItemCount() <= 1) {
                 finish();
                 startActivity(new Intent(this, RegisterCarActivity.class));
-            }
-            else {
-                Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
-            }
+            //}
+            //else {
+                //Toast.makeText(this, getString(R.string.num_excedido), Toast.LENGTH_LONG).show();
+            //}
         }
         else if (id == R.id.action_edit_user){
             if (Services.checkInternet(this)) {
@@ -258,58 +247,6 @@ public class UserActivity extends AppCompatActivity {
                     bundle.putString("email", usuario.getEmail());
                     bundle.putString("keyUsuario", usuario.getKeyUsuario());
                     bundle.putString("imagem", usuario.getImagem());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-    public void editPerfilCar(){
-        reference = ConfigurationFirebase.getFirebase();
-        reference.child("usuarios/").child("carros").orderByChild("foreignKeyUser").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    edit = postSnapshot.getValue(Car.class);
-                    final Intent intent = new Intent(UserActivity.this, EditCarActivity.class);
-                    final Bundle bundle = new Bundle();
-                    bundle.putString("origem", "editarDadosCarro");
-                    bundle.putString("placa", edit.getPlaca());
-                    bundle.putString("keyCar", edit.getKeyCar());
-                    bundle.putString("foreignKeyUser", edit.getForeignKeyUser());
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-    public void editPerfilGarage(){
-        reference = ConfigurationFirebase.getFirebase();
-        reference.child("usuarios/").child("garagens").orderByChild("foreingnKeyUser").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    garagem = postSnapshot.getValue(Garage.class);
-                    final Intent intent = new Intent(UserActivity.this, EditGarageActivity.class);
-                    final Bundle bundle = new Bundle();
-                    bundle.putString("origem", "editarDadosGaragem");
-                    bundle.putString("rua", garagem.getRua());
-                    bundle.putLong("numero", garagem.getNumero());
-                    bundle.putString("complemento", garagem.getComplemento());
-                    bundle.putString("bairro", garagem.getBairro());
-                    bundle.putString("cidade", garagem.getCidade());
-                    bundle.putDouble("valor", garagem.getValor());
-                    bundle.putString("keyGaragem", garagem.getKeyGaragem());
-                    bundle.putString("foreingnKeyUser", garagem.getForeingnKeyUser());
-                    bundle.putBoolean("garagem", garagem.getGaragem());
                     intent.putExtras(bundle);
                     startActivity(intent);
                     finish();

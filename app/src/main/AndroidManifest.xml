@@ -28,6 +28,8 @@
         <activity android:name=".activity.RegisterCarActivity" />
         <activity android:name=".activity.RegisterGaragActivity" />
         <activity android:name=".activity.EditUserActivity" />
+        <activity android:name=".activity.EditCarActivity" />
+        <activity android:name=".activity.EditGarageActivity" />
         <activity
             android:name=".activity.UserActivity"
             android:theme="@style/ThemeUser" />

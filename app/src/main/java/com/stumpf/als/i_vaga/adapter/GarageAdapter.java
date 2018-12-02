@@ -1,17 +1,24 @@
 package com.stumpf.als.i_vaga.adapter;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.stumpf.als.i_vaga.DAO.ConfigurationFirebase;
 import com.stumpf.als.i_vaga.R;
+import com.stumpf.als.i_vaga.activity.EditCarActivity;
+import com.stumpf.als.i_vaga.activity.EditGarageActivity;
 import com.stumpf.als.i_vaga.classes.Garage;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +26,11 @@ public class GarageAdapter extends RecyclerView.Adapter<GarageAdapter.ViewHolder
     private List<Garage> garagemList;
     private Context context;
     private DatabaseReference reference;
+    private FirebaseAuth autenticacao ;
     private List<Garage> garagens;
     private Garage garagem;
+    private String emailLogado;
+
     public GarageAdapter(List<Garage> l, Context c) {
         context = c;
         garagemList = l;
@@ -56,16 +66,27 @@ public class GarageAdapter extends RecyclerView.Adapter<GarageAdapter.ViewHolder
         } else {
             holder.txtComplementoGaragem.setText((context.getString(R.string.hint_complemento)) + " " + item.getComplemento());
         }
-        holder.txtValorGaragem.setText((context.getString(R.string.diaria)) + " " + (context.getString(R.string.dinheiro)) + String.valueOf(item.getValor()) + ",00");
+        holder.txtValorGaragem.setText((context.getString(R.string.diaria)) + " " + (context.getString(R.string.dinheiro)) + String.valueOf(item.getValor()));
         if (item.getGaragem()) {
             holder.txtMenssagem.setText(context.getString(R.string.garagem_on));
         } else {
             holder.txtMenssagem.setText(context.getString(R.string.garagem_off));
         }
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.txtRua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, EditGarageActivity.class);
+                intent.putExtra("rua", item.getRua());
+                intent.putExtra("numero", item.getNumero());
+                intent.putExtra("complemento", item.getComplemento());
+                intent.putExtra("bairro", item.getBairro());
+                intent.putExtra("cidade", item.getCidade());
+                intent.putExtra("valor", item.getValor());
+                intent.putExtra("garagem", item.getGaragem());
+                intent.putExtra("keyCar", item.getKeyGaragem());
+                intent.putExtra("foreingnKeyUser", item.getForeingnKeyUser());
+                context.startActivity(intent);
+                ((Activity)context).finish();
             }
         });
     }

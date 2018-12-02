@@ -28,13 +28,13 @@ public class EditGarageActivity extends AppCompatActivity {
     private TextInputEditText editBairro;
     private TextInputEditText editCidade;
     private TextInputEditText editValor;
-    private String txtOrigem = "";
     private String txtRua = "";
     private String txtNumero = "";
     private String txtComplemento = "";
     private String txtBairro = "";
     private String txtCidade = "";
     private String txtValor = "";
+    private boolean txtGaragem;
     private String txtKeyGarage = "";
     private String txtForeignKeyUser = "";
     private SwitchCompat editGaragemOnOff;
@@ -68,86 +68,87 @@ public class EditGarageActivity extends AppCompatActivity {
         emailLogado = autenticacao.getCurrentUser().getEmail();
         if (Services.checkInternet(this)) {
             Intent intent = getIntent();
-            Bundle bundle = intent.getExtras();
-            txtOrigem = bundle.getString("origem");
-            if (txtOrigem.equals("editarDadosGaragem")) {
-                txtRua = bundle.getString("rua");
-                txtNumero = bundle.getString("numero");
-                txtComplemento = bundle.getString("complemento");
-                txtBairro = bundle.getString("bairro");
-                txtCidade = bundle.getString("cidade");
-                txtValor = bundle.getString("valor");
-                txtKeyGarage = bundle.getString("keyGarage");
-                txtForeignKeyUser = bundle.getString("foreignKeyUser");
-                editRua.setText(txtRua);
-                editNumero.setText(txtNumero);
-                editComplemento.setText(txtComplemento);
-                editBairro.setText(txtBairro);
-                editCidade.setText(txtCidade);
-                editValor.setText(txtValor);
-                btnEditGaragem.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!editValor.getText().toString().equals("")) {
-                            progressBarGarage.setVisibility(View.VISIBLE);
-                            btnEditGaragem.setVisibility(View.GONE);
-                            btnDeletGaragem.setVisibility(View.GONE);
-                            garagem = new Garage();
-                            garagem.setRua(editRua.getText().toString());
-                            garagem.setNumero(Long.parseLong(editNumero.getText().toString()));
-                            if (!editComplemento.getText().toString().equals("")) {
-                                garagem.setComplemento(editComplemento.getText().toString());
-                            } else {
-                                garagem.setComplemento("");
-                            }
-                            garagem.setBairro(editBairro.getText().toString());
-                            garagem.setCidade(editCidade.getText().toString());
-                            garagem.setValor(Double.parseDouble(editValor.getText().toString()));
-                            editGaragemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                                @Override
-                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                    if (isChecked) {
-                                        garagem.setGaragem(true);
-                                        editTextOnOff.setText(getString(R.string.on));
-                                    } else {
-                                        garagem.setGaragem(false);
-                                        editTextOnOff.setText(getString(R.string.off));
-                                    }
-                                }
-                            });
-                            garagem.setKeyGaragem(txtKeyGarage);
-                            garagem.setForeingnKeyUser(txtForeignKeyUser);
-                            atualizarDados(garagem);
+            txtRua = intent.getStringExtra("rua");
+            txtNumero = intent.getStringExtra("numero");
+            txtComplemento = intent.getStringExtra("complemento");
+            txtBairro = intent.getStringExtra("bairro");
+            txtCidade = intent.getStringExtra("cidade");
+            txtValor = intent.getStringExtra("valor");
+            if (txtGaragem) {
+
+            }
+            else {
+                txtGaragem = intent.getBooleanExtra("garagem", false);
+            }
+            txtKeyGarage = intent.getStringExtra("keyGarage");
+            txtForeignKeyUser = intent.getStringExtra("foreignKeyUser");
+            editRua.setText(txtRua);
+            editNumero.setText(txtNumero);
+            editComplemento.setText(txtComplemento);
+            editBairro.setText(txtBairro);
+            editCidade.setText(txtCidade);
+            editValor.setText(txtValor);
+            btnEditGaragem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!editValor.getText().toString().equals("")) {
+                        progressBarGarage.setVisibility(View.VISIBLE);
+                        btnEditGaragem.setVisibility(View.GONE);
+                        btnDeletGaragem.setVisibility(View.GONE);
+                        garagem = new Garage();
+                        garagem.setRua(editRua.getText().toString());
+                        garagem.setNumero(Long.parseLong(editNumero.getText().toString()));
+                        if (!editComplemento.getText().toString().equals("")) {
+                            garagem.setComplemento(editComplemento.getText().toString());
                         } else {
-                            progressBarGarage.setVisibility(View.GONE);
-                            btnEditGaragem.setVisibility(View.VISIBLE);
-                            btnDeletGaragem.setVisibility(View.VISIBLE);
-                            if (editRua.getText().toString().equals("")) {
-                                Toast.makeText(EditGarageActivity.this, getString(R.string.rua_vazio), Toast.LENGTH_LONG).show();
+                            garagem.setComplemento("");
+                        }
+                        garagem.setBairro(editBairro.getText().toString());
+                        garagem.setCidade(editCidade.getText().toString());
+                        garagem.setValor(Double.parseDouble(editValor.getText().toString()));
+                        editGaragemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                            @Override
+                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                if (isChecked) {
+                                    garagem.setGaragem(true);
+                                    editTextOnOff.setText(getString(R.string.on));
+                                } else {
+                                    garagem.setGaragem(false);
+                                    editTextOnOff.setText(getString(R.string.off));
+                                }
                             }
-                            else if (editNumero.getText().toString().equals("")) {
-                                Toast.makeText(EditGarageActivity.this, getString(R.string.numero_vazio), Toast.LENGTH_LONG).show();
-                            }
-                            else if (editBairro.getText().toString().equals("")) {
-                                Toast.makeText(EditGarageActivity.this, getString(R.string.bairro_vazio), Toast.LENGTH_LONG).show();
-                            }
-                            else if (editCidade.getText().toString().equals("")) {
-                                Toast.makeText(EditGarageActivity.this, getString(R.string.cidade_vazio), Toast.LENGTH_LONG).show();
-                            }
-                            else if (editValor.getText().toString().equals("")) {
-                                Toast.makeText(EditGarageActivity.this, getString(R.string.valor_vazio), Toast.LENGTH_LONG).show();
-                            }
+                        });
+                        garagem.setKeyGaragem(txtKeyGarage);
+                        garagem.setForeingnKeyUser(txtForeignKeyUser);
+                        atualizarDados(garagem);
+                    } else {
+                        progressBarGarage.setVisibility(View.GONE);
+                        btnEditGaragem.setVisibility(View.VISIBLE);
+                        btnDeletGaragem.setVisibility(View.VISIBLE);
+                        if (editRua.getText().toString().equals("")) {
+                            Toast.makeText(EditGarageActivity.this, getString(R.string.rua_vazio), Toast.LENGTH_LONG).show();
+                        }
+                        else if (editNumero.getText().toString().equals("")) {
+                            Toast.makeText(EditGarageActivity.this, getString(R.string.numero_vazio), Toast.LENGTH_LONG).show();
+                        }
+                        else if (editBairro.getText().toString().equals("")) {
+                            Toast.makeText(EditGarageActivity.this, getString(R.string.bairro_vazio), Toast.LENGTH_LONG).show();
+                        }
+                        else if (editCidade.getText().toString().equals("")) {
+                            Toast.makeText(EditGarageActivity.this, getString(R.string.cidade_vazio), Toast.LENGTH_LONG).show();
+                        }
+                        else if (editValor.getText().toString().equals("")) {
+                            Toast.makeText(EditGarageActivity.this, getString(R.string.valor_vazio), Toast.LENGTH_LONG).show();
                         }
                     }
-                });
-                btnDeletGaragem.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        abrirDialogDelete();
-                        Toast.makeText(EditGarageActivity.this, getString(R.string.delet_dados), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+                }
+            });
+            btnDeletGaragem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    abrirDialogDelete();
+                }
+            });
         }
         else {
             btnEditGaragem.setVisibility(View.VISIBLE);
@@ -180,7 +181,7 @@ public class EditGarageActivity extends AppCompatActivity {
         String erro = "";
         try {
             reference = ConfigurationFirebase.getFirebase().child("usuarios/").child("garagens");
-            reference.child(txtForeignKeyUser).setValue(garagem);
+            reference.child(txtKeyGarage).setValue(garagem);
             Toast.makeText(this, getString(R.string.edit_dados) + erro, Toast.LENGTH_LONG).show();
             abreUser();
         }
@@ -188,10 +189,9 @@ public class EditGarageActivity extends AppCompatActivity {
             btnEditGaragem.setVisibility(View.VISIBLE);
             btnDeletGaragem.setVisibility(View.VISIBLE);
             progressBarGarage.setVisibility(View.GONE);
-            erro = getString(R.string.erro_cadastro);
+            Toast.makeText(this, getString(R.string.not_edit_dados) + erro, Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
         return true;
     }
     private void abrirDialogDelete(){
@@ -203,6 +203,7 @@ public class EditGarageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 removerDadosGaragem();
+                Toast.makeText(EditGarageActivity.this, getString(R.string.delet_dados), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }
         });
@@ -210,6 +211,7 @@ public class EditGarageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abreUser();
+                Toast.makeText(EditGarageActivity.this, getString(R.string.not_edit_dados), Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }
         });
