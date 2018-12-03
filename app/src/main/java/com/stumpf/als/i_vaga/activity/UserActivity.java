@@ -227,6 +227,7 @@ public class UserActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_exit){
             FirebaseAuth.getInstance().signOut();
+            finish();
             abrirLogin();
         }
         return super.onOptionsItemSelected(item);
