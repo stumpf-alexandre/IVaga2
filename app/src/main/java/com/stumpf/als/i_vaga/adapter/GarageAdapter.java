@@ -68,9 +68,9 @@ public class GarageAdapter extends RecyclerView.Adapter<GarageAdapter.ViewHolder
         }
         holder.txtValorGaragem.setText((context.getString(R.string.diaria)) + " " + (context.getString(R.string.dinheiro)) + String.valueOf(item.getValor()));
         if (item.getGaragem()) {
-            holder.txtMenssagem.setText(context.getString(R.string.garagem_on));
+            holder.txtMenssagem.setText(context.getString(R.string.on));
         } else {
-            holder.txtMenssagem.setText(context.getString(R.string.garagem_off));
+            holder.txtMenssagem.setText(context.getString(R.string.off));
         }
         holder.txtRua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +83,7 @@ public class GarageAdapter extends RecyclerView.Adapter<GarageAdapter.ViewHolder
                 intent.putExtra("cidade", item.getCidade());
                 intent.putExtra("valor", item.getValor());
                 intent.putExtra("garagem", item.getGaragem());
-                intent.putExtra("keyCar", item.getKeyGaragem());
+                intent.putExtra("keyGaragem", item.getKeyGaragem());
                 intent.putExtra("foreingnKeyUser", item.getForeingnKeyUser());
                 context.startActivity(intent);
                 ((Activity)context).finish();

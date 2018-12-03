@@ -1,5 +1,6 @@
 package com.stumpf.als.i_vaga.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,8 +65,8 @@ public class ListActivity extends AppCompatActivity {
             });
         }
         else {
+            abreUser();
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-            finish();
         }
     }
     private void eventEdit() {
@@ -127,5 +128,9 @@ public class ListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         searchWord("");
+    }
+    private void abreUser(){
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }

@@ -72,7 +72,6 @@ public class UserActivity extends AppCompatActivity {
     private LinearLayoutManager linearManagerGarage;
     private Garage garagem;
     private Car carro;
-    private Car edit;
     private int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +89,6 @@ public class UserActivity extends AppCompatActivity {
         collapsingToolbarLayout = findViewById(R.id.collapsingToolbar);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fab = findViewById(R.id.floatingButton);
         fab.setVisibility(View.VISIBLE);
         recyclerViewCarro = findViewById(R.id.recycleViewListCar);
@@ -134,8 +132,8 @@ public class UserActivity extends AppCompatActivity {
             carregarTodasGaragens();
         }
         else {
+            abrirLogin();
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-            finish();
         }
     }
     private void carregarTodosCarros() {
@@ -192,7 +190,7 @@ public class UserActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_add_gar){
             //if (adapterGarage.getItemCount() <= 2) {
-                finish();
+                //finish();
                 startActivity(new Intent(this, RegisterGaragActivity.class));
             //}
             //else {
@@ -201,7 +199,7 @@ public class UserActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_add_car){
             //if (adapterCar.getItemCount() <= 1) {
-                finish();
+                //finish();
                 startActivity(new Intent(this, RegisterCarActivity.class));
             //}
             //else {
@@ -213,8 +211,9 @@ public class UserActivity extends AppCompatActivity {
                 editPerfilUser();
             }
             else {
+                abrirLogin();
                 Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-                finish();
+
             }
         }
         else if (id == R.id.action_list_gar){
@@ -222,8 +221,8 @@ public class UserActivity extends AppCompatActivity {
                 abrirList();
             }
             else {
+                abrirLogin();
                 Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-                finish();
             }
         }
         else if (id == R.id.action_exit){
@@ -249,7 +248,7 @@ public class UserActivity extends AppCompatActivity {
                     bundle.putString("imagem", usuario.getImagem());
                     intent.putExtras(bundle);
                     startActivity(intent);
-                    finish();
+                    //finish();
                 }
             }
             @Override
@@ -258,11 +257,11 @@ public class UserActivity extends AppCompatActivity {
         });
     }
     private void abrirLogin(){
-        finish();
+        //finish();
         startActivity(new Intent(this, LoginActivity.class));
     }
     private void abrirList(){
-        finish();
+        //finish();
         startActivity(new Intent(this, ListActivity.class));
     }
     private void carregarImage(){
@@ -360,9 +359,9 @@ public class UserActivity extends AppCompatActivity {
             reference.child("usuarios").child("imagem").setValue(usuario);
         }catch (Exception e){
             erro = getString(R.string.erro_dados);
+            Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
         return true;
     }
 }

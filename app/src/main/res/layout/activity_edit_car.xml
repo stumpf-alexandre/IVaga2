@@ -65,11 +65,11 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:contentDescription="@string/content_description_button_cadastro_carro">
+                        android:contentDescription="@string/content_description_button_edit_car">
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/button_cadastrar"
+                            android:text="@string/button_edit"
                             android:textSize="@dimen/text_size"
                             android:textStyle="bold"
                             android:gravity="center"

@@ -117,7 +117,9 @@
                 android:id="@+id/switch_on_offRegisterGarage"
                 android:layout_width="@dimen/expanded_start"
                 android:layout_height="@dimen/expanded_start"
-                android:layout_marginLeft="@dimen/margin"/>
+                android:layout_marginLeft="@dimen/margin"
+                android:textOff="@string/f"
+                android:textOn="@string/n"/>
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/on_offRegisterGarage"
                 android:layout_width="wrap_content"

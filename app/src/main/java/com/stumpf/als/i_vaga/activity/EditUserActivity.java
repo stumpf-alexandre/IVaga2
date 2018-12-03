@@ -32,7 +32,6 @@ public class EditUserActivity extends AppCompatActivity {
     private String txtKeyUsuario = "";
     private String txtImagem = "";
     private ContentLoadingProgressBar progressBar;
-    User usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +94,11 @@ public class EditUserActivity extends AppCompatActivity {
             }
         }
         else {
+            progressBar.setVisibility(View.GONE);
+            btnEditUser.setVisibility(View.VISIBLE);
+            abreUser();
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-            finish();
+
         }
     }
     private boolean atualizarDados(final User usuario){
@@ -129,6 +131,7 @@ public class EditUserActivity extends AppCompatActivity {
     }
     private void abreUser(){
         finish();
-        startActivity(new Intent(this, UserActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
+
 }

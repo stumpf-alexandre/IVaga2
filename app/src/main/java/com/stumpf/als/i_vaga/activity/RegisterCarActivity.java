@@ -54,8 +54,8 @@ public class RegisterCarActivity extends AppCompatActivity {
         else {
             btnCadastroCarro.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
+            abreUser();
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-            finish();
             emptyEditText(placa);
         }
     }
@@ -65,8 +65,7 @@ public class RegisterCarActivity extends AppCompatActivity {
             String key = reference.push().getKey();
             carro.setKeyCar(key);
             reference.child(key).setValue(car);
-            finish();
-            startActivity(new Intent(this, UserActivity.class));
+            abreUser();
             Toast.makeText(this, getString(R.string.dados_carro), Toast.LENGTH_LONG).show();
             emptyEditText(placa);
             return true;
@@ -81,5 +80,9 @@ public class RegisterCarActivity extends AppCompatActivity {
     }
     private void emptyEditText(TextInputEditText text1) {
         text1.setText(null);
+    }
+    private void abreUser(){
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }

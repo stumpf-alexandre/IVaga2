@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private AppCompatTextView btnTextRecuperarSenha;
     private ContentLoadingProgressBar progressBarLogin;
     private AlertDialog alerta;
+    private int cont = 0;
     User usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,14 @@ public class LoginActivity extends AppCompatActivity {
             if (userLogado()) {
                 finish();
                 startActivity(new Intent(getBaseContext(), UserActivity.class));
-                Toast.makeText(LoginActivity.this, getString(R.string.usuario), Toast.LENGTH_LONG).show();
-                emptyEditText(textEmail, textSenha);
+                if (cont == 0) {
+                    Toast.makeText(LoginActivity.this, getString(R.string.usuario), Toast.LENGTH_LONG).show();
+                    emptyEditText(textEmail, textSenha);
+                }
+                else {
+                    cont++;
+                    emptyEditText(textEmail, textSenha);
+                }
             } else {
                 btnLogin.setOnClickListener(new View.OnClickListener() {
                     @Override

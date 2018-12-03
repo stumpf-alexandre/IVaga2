@@ -69,25 +69,27 @@ public class EditGarageActivity extends AppCompatActivity {
         if (Services.checkInternet(this)) {
             Intent intent = getIntent();
             txtRua = intent.getStringExtra("rua");
-            txtNumero = intent.getStringExtra("numero");
+            txtNumero = String.valueOf(intent.getLongExtra("numero", 0));
             txtComplemento = intent.getStringExtra("complemento");
             txtBairro = intent.getStringExtra("bairro");
             txtCidade = intent.getStringExtra("cidade");
-            txtValor = intent.getStringExtra("valor");
-            if (txtGaragem) {
-
-            }
-            else {
-                txtGaragem = intent.getBooleanExtra("garagem", false);
-            }
-            txtKeyGarage = intent.getStringExtra("keyGarage");
-            txtForeignKeyUser = intent.getStringExtra("foreignKeyUser");
+            txtValor = String.valueOf(intent.getDoubleExtra("valor", 0));
+            txtGaragem = intent.getBooleanExtra("garagem", true);
+            txtKeyGarage = intent.getStringExtra("keyGaragem");
+            txtForeignKeyUser = intent.getStringExtra("foreingnKeyUser");
             editRua.setText(txtRua);
             editNumero.setText(txtNumero);
             editComplemento.setText(txtComplemento);
             editBairro.setText(txtBairro);
             editCidade.setText(txtCidade);
             editValor.setText(txtValor);
+            if (txtGaragem) {
+                editGaragemOnOff.setChecked(txtGaragem);
+                editTextOnOff.setText(getString(R.string.on));
+            } else {
+                editGaragemOnOff.setChecked(txtGaragem);
+                editTextOnOff.setText(getString(R.string.off));
+            }
             btnEditGaragem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -154,14 +156,14 @@ public class EditGarageActivity extends AppCompatActivity {
             btnEditGaragem.setVisibility(View.VISIBLE);
             btnDeletGaragem.setVisibility(View.VISIBLE);
             progressBarGarage.setVisibility(View.GONE);
+            abreUser();
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
             emptyEditText(editRua, editNumero, editComplemento, editBairro, editCidade, editValor);
-            finish();
         }
     }
     private void removerDadosGaragem(){
         reference = ConfigurationFirebase.getFirebase();
-        reference.child("usuarios/").child("garagens").orderByChild("keyGarage").equalTo(txtKeyGarage).addValueEventListener(new ValueEventListener() {
+        reference.child("usuarios/").child("garagens").orderByChild("keyGaragem").equalTo(txtKeyGarage).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
@@ -176,20 +178,19 @@ public class EditGarageActivity extends AppCompatActivity {
             }
         });
     }
-    private boolean atualizarDados(final Garage garagem){
+    private boolean atualizarDados(final Garage garage){
         btnEditGaragem.setEnabled(false);
-        String erro = "";
         try {
             reference = ConfigurationFirebase.getFirebase().child("usuarios/").child("garagens");
-            reference.child(txtKeyGarage).setValue(garagem);
-            Toast.makeText(this, getString(R.string.edit_dados) + erro, Toast.LENGTH_LONG).show();
+            reference.child(txtKeyGarage).setValue(garage);
+            Toast.makeText(this, getString(R.string.edit_dados), Toast.LENGTH_LONG).show();
             abreUser();
         }
         catch (Exception e) {
             btnEditGaragem.setVisibility(View.VISIBLE);
             btnDeletGaragem.setVisibility(View.VISIBLE);
             progressBarGarage.setVisibility(View.GONE);
-            Toast.makeText(this, getString(R.string.not_edit_dados) + erro, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.not_edit_dados), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
         return true;

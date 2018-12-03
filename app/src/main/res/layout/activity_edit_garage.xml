@@ -154,14 +154,14 @@
                     <android.support.v7.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:contentDescription="@string/content_description_button_cadastro_garagem"
+                        android:contentDescription="@string/content_description_button_edit_garage"
                         android:gravity="center"
                         android:orientation="horizontal">
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/button_cadastrar"
+                            android:text="@string/button_edit"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/text_size"
                             android:textStyle="bold"

@@ -30,7 +30,6 @@
     <string name="button_cadastrar">Cadastrar</string>
     <string name="button_cadastrar_gps">Cadastrar Localização</string>
     <string name="button_voltar">Excluir</string>
-    <string name="button_sair_upload">Cancelar</string>
     <string name="button_edit">Editar</string>
     <string name="text_button_cadastro">Não possui conta? Cadastre-se!</string>
     <string name="text_button_recuperar_senha">Esqueci a minha senha</string>
@@ -42,14 +41,14 @@
     <string name="text_cadastro_carro">Seus Carros</string>
     <string name="text_lista_carro">Dados do carro cadastrado</string>
     <string name="usuario">Usuario logado</string>
-    <string name="garagem_on">Garagem aberta</string>
-    <string name="garagem_off">Garagem fechada</string>
     <string name="informar_email">Informe o seu e-mail</string>
     <string name="preencher_campo_email">Preencha o campo de e-mail!"</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="on">Garagem aberta</string>
     <string name="off">Garagem fechada</string>
+    <string name="n">ON</string>
+    <string name="f">OFF</string>
 
     <string name="content_description_email">Campo para digitar e-mail de login</string>
     <string name="content_description_senha">Campo para digitar senha de login</string>
@@ -58,9 +57,9 @@
     <string name="content_description_text_button_recuperar_senha">Botão para recuperar a senha de login</string>
     <string name="content_description_titulo_cadastro">Tela de cadastro de dados de login</string>
     <string name="content_description_confirmar_senha_cadastro">Campo para digitar senha de confirmação</string>
-    <string name="content_description_button_cadastro">Botão para cadastrar os dados de login e prosseguir com o cadastro</string>
+    <string name="content_description_button_cadastro">Botão para cadastrar os dados de usuário</string>
     <string name="content_description_button_edit_car">Botão para editar os dados do carro</string>
-    <string name="content_description_button_sair_edit_car">Botão para sair da edição dos dados do carro</string>
+    <string name="content_description_button_edit_garage">Botão para editar os dados da gar</string>
     <string name="content_description_text_button_login">Botão para acessar a tela de login de usuário</string>
     <string name="content_description_titulo_cadastro_garagem">Tela de cadastro de dados da garagem</string>
     <string name="content_description_titulo_cadastro_carro">Tela de cadastro de dados do carro</string>
@@ -86,10 +85,9 @@
     <string name="content_description_button_cadastro_carro">Botão para cadastrar dados do carro</string>
     <string name="content_description_button_sair_cadastro_carro">Botão para excluir dados do carro</string>
     <string name="content_description_button_edit_user">Botão para editar dados do usuário</string>
-    <string name="content_description_button_sair_edit_user">Botão para sair da pagina de edição de dados do usuário</string>
     <string name="content_description_button_sim">Botão para confirmar exclusão de dados</string>
     <string name="content_description_button_nao">Botão para não confirmar exclusão de dados</string>
-    <string name="content_description_campo_pesquisa">Campo para pesquesar as garagens por cidade</string>
+    <string name="content_description_campo_pesquisa">Campo para pesquisar as garagens por cidade</string>
     <string name="content_description_button_pesquisa">Botão para pesquisar as garagens</string>
 
     <string name="ja_logado">Usuário logado</string>
@@ -112,8 +110,8 @@
     <string name="senha_forte">Senha fraca, digite no minimo 6 caracteres</string>
     <string name="email_invalido">E-mail digitado invalido! Digite um e-mail valido</string>
     <string name="email_nao_valido">E-mail inválido</string>
-    <string name="email_nao_cadastrado">E-mail não está¡ cadastrado</string>
-    <string name="email_cadastrado">E-mail já¡ cadastrado!</string>
+    <string name="email_nao_cadastrado">E-mail não está cadastrado</string>
+    <string name="email_cadastrado">E-mail já cadastrado!</string>
     <string name="erro_cadastro">Sem conexão com o Banco de Dados!!!</string>
     <string name="erro_internet">Sem conexão com a Internet!!!</string>
     <string name="erro">Erro: </string>

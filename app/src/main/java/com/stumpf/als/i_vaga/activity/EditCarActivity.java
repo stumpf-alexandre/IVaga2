@@ -80,8 +80,8 @@ public class EditCarActivity extends AppCompatActivity {
             btnEditCarro.setVisibility(View.VISIBLE);
             btnDeletCarro.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
+            abreUser();
             Toast.makeText(this, getString(R.string.erro_internet), Toast.LENGTH_LONG).show();
-            finish();
             emptyEditText(placa);
         }
     }
