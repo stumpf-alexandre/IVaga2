@@ -37,6 +37,7 @@ public class RegisterGaragActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_garag);
+        //garagemOnOff.setChecked(garagem.getGaragem());
         autenticacao = ConfigurationFirebase.getFirebaseAuth();
         txtrua = findViewById(R.id.ruaRegisterGarage);
         txtnumero = findViewById(R.id.numeroRegisterGarage);
@@ -52,6 +53,12 @@ public class RegisterGaragActivity extends AppCompatActivity {
         progressBarGarage.setVisibility(View.GONE);
         emailLogado = autenticacao.getCurrentUser().getEmail();
         if (Services.checkInternet(this)) {
+            if (btn){
+                txtOnOff.setText(getString(R.string.on));
+            }
+            else {
+                txtOnOff.setText(getString(R.string.off));
+            }
             btnCadastrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -70,7 +77,7 @@ public class RegisterGaragActivity extends AppCompatActivity {
                         garagem.setBairro(txtbairro.getText().toString());
                         garagem.setCidade(txtcidade.getText().toString());
                         garagem.setValor(Double.parseDouble(txtvalor.getText().toString()));
-                        //garagem.setGaragem(btn);
+                        garagem.setGaragem(btn);
                         garagem.setForeingnKeyUser(emailLogado);
                         insereCadastroGaragem(garagem);
                     } else {
@@ -94,10 +101,10 @@ public class RegisterGaragActivity extends AppCompatActivity {
                     }
                 }
             });
-            garagemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            garagemOnOff.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
+                public void onClick(View v) {
+                    if (garagemOnOff.isChecked()) {
                         btn = true;
                         txtOnOff.setText(getString(R.string.on));
                     } else {

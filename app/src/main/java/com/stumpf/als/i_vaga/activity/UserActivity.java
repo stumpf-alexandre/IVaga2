@@ -145,6 +145,7 @@ public class UserActivity extends AppCompatActivity {
         reference.child("usuarios/").child("carros").orderByChild("foreignKeyUser").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                carros.clear();
                 for (DataSnapshot postSnapshotCar : dataSnapshot.getChildren()){
                     carro = postSnapshotCar.getValue(Car.class);
                     carros.add(carro);
@@ -167,6 +168,7 @@ public class UserActivity extends AppCompatActivity {
         reference.child("usuarios/").child("garagens").orderByChild("foreingnKeyUser").equalTo(emailLogado).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                garagens.clear();
                 for (DataSnapshot postSnapshotGar : dataSnapshot.getChildren()){
                     garagem = postSnapshotGar.getValue(Garage.class);
                     garagens.add(garagem);

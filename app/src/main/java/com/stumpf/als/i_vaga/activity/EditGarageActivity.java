@@ -84,7 +84,7 @@ public class EditGarageActivity extends AppCompatActivity {
             editBairro.setText(txtBairro);
             editCidade.setText(txtCidade);
             editValor.setText(txtValor);
-            if (txtGaragem) {
+            if (txtGaragem == true) {
                 editGaragemOnOff.setChecked(txtGaragem);
                 editTextOnOff.setText(getString(R.string.on));
             } else {
@@ -109,7 +109,7 @@ public class EditGarageActivity extends AppCompatActivity {
                         garagem.setBairro(editBairro.getText().toString());
                         garagem.setCidade(editCidade.getText().toString());
                         garagem.setValor(Double.parseDouble(editValor.getText().toString()));
-
+                        garagem.setGaragem(btn);
                         garagem.setKeyGaragem(txtKeyGarage);
                         garagem.setForeingnKeyUser(txtForeignKeyUser);
                         atualizarDados(garagem);
@@ -141,10 +141,16 @@ public class EditGarageActivity extends AppCompatActivity {
                     abrirDialogDelete();
                 }
             });
-            editGaragemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            editGaragemOnOff.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                public void onClick(View v) {
+                    if (editGaragemOnOff.isChecked()) {
+                        btn = true;
+                        editTextOnOff.setText(getString(R.string.on));
+                    } else {
+                        btn = false;
+                        editTextOnOff.setText(getString(R.string.off));
+                    }
                 }
             });
         }

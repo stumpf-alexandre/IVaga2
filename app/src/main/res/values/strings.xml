@@ -9,7 +9,6 @@
     <string name="titulo_edit_car">Editar Dados Carro</string>
     <string name="titulo_gps">Localizando Garagem</string>
     <string name="delete">Confirmar Exclusão de Dados?</string>
-
     <string name="hint_email">E-Mail:</string>
     <string name="hint_senha">Senha:</string>
     <string name="hint_confirmar_senha">Confirmar senha:</string>
@@ -28,14 +27,12 @@
     <string name="cancelar">Cancelar</string>
     <string name="numero">Nº:</string>
     <string name="valor">Diaria:</string>
-
     <string name="button_login">Login</string>
     <string name="button_cadastrar">Cadastrar</string>
     <string name="button_voltar">Excluir</string>
     <string name="button_edit">Editar</string>
     <string name="text_button_cadastro">Não possui conta? Cadastre-se!</string>
     <string name="text_button_recuperar_senha">Esqueci a minha senha</string>
-    <string name="radio_button">Selecione uma opção para continuar o cadastro:</string>
     <string name="text_garagem">Garagem</string>
     <string name="text_carro">Carro</string>
     <string name="text_button_login">Já possuo cadastro! Login</string>
@@ -44,14 +41,13 @@
     <string name="text_lista_carro">Dados do carro cadastrado</string>
     <string name="usuario">Usuario logado</string>
     <string name="informar_email">Informe o seu e-mail</string>
-    <string name="preencher_campo_email">Preencha o campo de e-mail!"</string>
+    <string name="preencher_campo_email">Preencha o campo de e-mail!</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="on">Garagem aberta</string>
     <string name="off">Garagem fechada</string>
     <string name="n">ON</string>
     <string name="f">OFF</string>
-
     <string name="content_description_email">Campo para digitar e-mail de login</string>
     <string name="content_description_senha">Campo para digitar senha de login</string>
     <string name="content_description_button_login">Botão para se logar na conta de usuário</string>
@@ -62,7 +58,7 @@
     <string name="content_description_confirmar_senha_cadastro">Campo para digitar senha de confirmação</string>
     <string name="content_description_button_cadastro">Botão para cadastrar os dados de usuário</string>
     <string name="content_description_button_edit_car">Botão para editar os dados do carro</string>
-    <string name="content_description_button_edit_garage">Botão para editar os dados da gar</string>
+    <string name="content_description_button_edit_garage">Botão para editar os dados da garagem</string>
     <string name="content_description_text_button_login">Botão para acessar a tela de login de usuário</string>
     <string name="content_description_titulo_cadastro_garagem">Tela de cadastro de dados da garagem</string>
     <string name="content_description_titulo_cadastro_carro">Tela de cadastro de dados do carro</string>
@@ -91,7 +87,6 @@
     <string name="content_description_button_sim">Botão para confirmar exclusão de dados</string>
     <string name="content_description_button_nao">Botão para não confirmar exclusão de dados</string>
     <string name="content_description_button_map">Botão para acessar mapa</string>
-
     <string name="ja_logado">Usuário logado</string>
     <string name="email_vazio">Campo do e-mail vazio</string>
     <string name="senha_vazio">Campo da senha vazio</string>

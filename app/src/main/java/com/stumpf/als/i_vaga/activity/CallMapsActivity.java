@@ -88,6 +88,7 @@ public class CallMapsActivity extends AppCompatActivity {
                 intent.setClassName("com.google.android.apps.maps",
                         "com.google.android.maps.MapsActivity");
                 startActivity(intent);
+                finish();
             }
         });
     }
