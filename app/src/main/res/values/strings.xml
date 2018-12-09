@@ -7,6 +7,7 @@
     <string name="recuperar_senha">Recuperação de Senha</string>
     <string name="titulo_edit_user">Editar Dados Usuário</string>
     <string name="titulo_edit_car">Editar Dados Carro</string>
+    <string name="titulo_gps">Localizando Garagem</string>
     <string name="delete">Confirmar Exclusão de Dados?</string>
 
     <string name="hint_email">E-Mail:</string>
@@ -57,6 +58,7 @@
     <string name="content_description_text_button_cadastro">Botão para acessar a tela de cadastro dos dados de login</string>
     <string name="content_description_text_button_recuperar_senha">Botão para recuperar a senha de login</string>
     <string name="content_description_titulo_cadastro">Tela de cadastro de dados de login</string>
+    <string name="content_description_titulo_gps">Tela de dados para acessar geoposicionamento</string>
     <string name="content_description_confirmar_senha_cadastro">Campo para digitar senha de confirmação</string>
     <string name="content_description_button_cadastro">Botão para cadastrar os dados de usuário</string>
     <string name="content_description_button_edit_car">Botão para editar os dados do carro</string>
@@ -88,7 +90,7 @@
     <string name="content_description_button_edit_user">Botão para editar dados do usuário</string>
     <string name="content_description_button_sim">Botão para confirmar exclusão de dados</string>
     <string name="content_description_button_nao">Botão para não confirmar exclusão de dados</string>
-    <string name="content_description_campo_pesquisa">Campo para pesquisar as garagens por cidade</string>
+    <string name="content_description_button_map">Botão para acessar mapa</string>
 
     <string name="ja_logado">Usuário logado</string>
     <string name="email_vazio">Campo do e-mail vazio</string>
@@ -132,5 +134,7 @@
     <string name="selecione_imagem">Selecione uma imagem</string>
     <string name="num_excedido">Número de cadastros excedido!</string>
     <string name="aguarde">Aguarde...</string>
-    <string name="pesquisar_por">Pesquisar por Cidade</string>
+    <string name="vamos_la">Vamos Lá!</string>
+    <string name="nome_proprietario">Proprietario:</string>
+    <string name="endereco_proprietario">Endereço:</string>
 </resources>

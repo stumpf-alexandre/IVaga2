@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.stumpf.als.i_vaga.R;
 import com.stumpf.als.i_vaga.activity.CallMapsActivity;
+import com.stumpf.als.i_vaga.activity.EditGarageActivity;
 import com.stumpf.als.i_vaga.classes.Garage;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,10 +75,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.linearList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uri = "http://maps.google.com/maps?q=" + txt_address.getText().toString();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                intent.setClassName("com.google.android.apps.maps",
-                        "com.google.android.maps.MapsActivity");
+                Intent intent = new Intent(context, CallMapsActivity.class);
+                intent.putExtra("rua", item.getRua());
+                intent.putExtra("numero", item.getNumero());
+                intent.putExtra("bairro", item.getBairro());
+                intent.putExtra("complemento", item.getComplemento());
+                intent.putExtra("cidade", item.getCidade());
+                intent.putExtra("valor", item.getValor());
+                intent.putExtra("keyGaragem", item.getKeyGaragem());
+                intent.putExtra("foreingnKeyUser", item.getForeingnKeyUser());
                 context.startActivity(intent);
                 ((Activity)context).finish();
             }
