@@ -7,8 +7,8 @@ public class Garage {
     private String bairro;
     private String cidade;
     private Double valor;
-    private String foreingnKeyUser;
     private boolean garagem;
+    private String foreingnKeyUser;
     public String getKeyGaragem() {
         return keyGaragem;
     }

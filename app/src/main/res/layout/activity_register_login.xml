@@ -73,7 +73,7 @@
                 style="@style/edit_text_cadastro"
                 android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:hint="@string/hint_nome"
-                android:inputType="textCapSentences|textCapWords|textAutoComplete"
+                android:inputType="textCapSentences|textCapWords"
                 android:contentDescription="@string/content_description_nome"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -84,7 +84,7 @@
                 style="@style/edit_text_cadastro"
                 android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:hint="@string/hint_sobrenome"
-                android:inputType="textCapSentences|textCapWords|textAutoComplete"
+                android:inputType="textCapSentences|textCapWords"
                 android:contentDescription="@string/content_description_sobrenome"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.LinearLayoutCompat

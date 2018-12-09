@@ -34,7 +34,7 @@
                 android:gravity="center_vertical"
                 android:drawableLeft="@drawable/ic_home_black_24dp"
                 android:hint="@string/hint_rua"
-                android:inputType="textAutoComplete|textCapSentences|textCapWords"
+                android:inputType="textCapSentences|textCapWords"
                 android:contentDescription="@string/content_description_rua"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.LinearLayoutCompat
@@ -63,7 +63,7 @@
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_complemento"
-                    android:inputType="textAutoComplete|textCapSentences|textCapWords"
+                    android:inputType="textCapSentences|textCapWords"
                     android:contentDescription="@string/content_description_complemento"/>
             </android.support.design.widget.TextInputLayout>
         </android.support.v7.widget.LinearLayoutCompat>
@@ -81,7 +81,7 @@
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_bairro"
-                    android:inputType="textAutoComplete|textCapSentences|textCapWords"
+                    android:inputType="textCapSentences|textCapWords"
                     android:contentDescription="@string/content_description_bairro"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -93,7 +93,7 @@
                     style="@style/edit_text_cadastro"
                     android:drawableLeft="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_cidade"
-                    android:inputType="textAutoComplete|textCapSentences|textCapWords"
+                    android:inputType="textCapSentences|textCapWords"
                     android:contentDescription="@string/content_description_cidade"/>
             </android.support.design.widget.TextInputLayout>
         </android.support.v7.widget.LinearLayoutCompat>

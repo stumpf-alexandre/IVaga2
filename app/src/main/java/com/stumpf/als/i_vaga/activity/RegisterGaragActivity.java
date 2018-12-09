@@ -59,6 +59,7 @@ public class RegisterGaragActivity extends AppCompatActivity {
                         progressBarGarage.setVisibility(View.VISIBLE);
                         btnCadastrar.setVisibility(View.GONE);
                         garagem = new Garage();
+                        garagemOnOff.setChecked(garagem.getGaragem());
                         garagem.setRua(txtrua.getText().toString());
                         garagem.setNumero(Long.parseLong(txtnumero.getText().toString()));
                         if (!txtcomplemento.getText().toString().equals("")) {
@@ -69,18 +70,7 @@ public class RegisterGaragActivity extends AppCompatActivity {
                         garagem.setBairro(txtbairro.getText().toString());
                         garagem.setCidade(txtcidade.getText().toString());
                         garagem.setValor(Double.parseDouble(txtvalor.getText().toString()));
-                        garagemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if (isChecked) {
-                                    garagem.setGaragem(true);
-                                    txtOnOff.setText(getString(R.string.on));
-                                } else {
-                                    garagem.setGaragem(false);
-                                    txtOnOff.setText(getString(R.string.off));
-                                }
-                            }
-                        });
+                        //garagem.setGaragem(btn);
                         garagem.setForeingnKeyUser(emailLogado);
                         insereCadastroGaragem(garagem);
                     } else {
@@ -101,6 +91,18 @@ public class RegisterGaragActivity extends AppCompatActivity {
                         else if (txtvalor.getText().toString().equals("")) {
                             Toast.makeText(RegisterGaragActivity.this, getString(R.string.valor_vazio), Toast.LENGTH_LONG).show();
                         }
+                    }
+                }
+            });
+            garagemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        btn = true;
+                        txtOnOff.setText(getString(R.string.on));
+                    } else {
+                        btn = false;
+                        txtOnOff.setText(getString(R.string.off));
                     }
                 }
             });

@@ -28,6 +28,7 @@ public class EditGarageActivity extends AppCompatActivity {
     private TextInputEditText editBairro;
     private TextInputEditText editCidade;
     private TextInputEditText editValor;
+    private boolean btn;
     private String txtRua = "";
     private String txtNumero = "";
     private String txtComplemento = "";
@@ -74,7 +75,7 @@ public class EditGarageActivity extends AppCompatActivity {
             txtBairro = intent.getStringExtra("bairro");
             txtCidade = intent.getStringExtra("cidade");
             txtValor = String.valueOf(intent.getDoubleExtra("valor", 0));
-            txtGaragem = intent.getBooleanExtra("garagem", true);
+            txtGaragem = intent.getBooleanExtra("garagem", false);
             txtKeyGarage = intent.getStringExtra("keyGaragem");
             txtForeignKeyUser = intent.getStringExtra("foreingnKeyUser");
             editRua.setText(txtRua);
@@ -108,18 +109,7 @@ public class EditGarageActivity extends AppCompatActivity {
                         garagem.setBairro(editBairro.getText().toString());
                         garagem.setCidade(editCidade.getText().toString());
                         garagem.setValor(Double.parseDouble(editValor.getText().toString()));
-                        editGaragemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if (isChecked) {
-                                    garagem.setGaragem(true);
-                                    editTextOnOff.setText(getString(R.string.on));
-                                } else {
-                                    garagem.setGaragem(false);
-                                    editTextOnOff.setText(getString(R.string.off));
-                                }
-                            }
-                        });
+
                         garagem.setKeyGaragem(txtKeyGarage);
                         garagem.setForeingnKeyUser(txtForeignKeyUser);
                         atualizarDados(garagem);
@@ -149,6 +139,12 @@ public class EditGarageActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     abrirDialogDelete();
+                }
+            });
+            editGaragemOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 }
             });
         }

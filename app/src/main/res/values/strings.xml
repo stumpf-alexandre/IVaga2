@@ -25,10 +25,11 @@
     <string name="dinheiro">$</string>
     <string name="recuperar">Recuperar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="numero">Nº:</string>
+    <string name="valor">Diaria:</string>
 
     <string name="button_login">Login</string>
     <string name="button_cadastrar">Cadastrar</string>
-    <string name="button_cadastrar_gps">Cadastrar Localização</string>
     <string name="button_voltar">Excluir</string>
     <string name="button_edit">Editar</string>
     <string name="text_button_cadastro">Não possui conta? Cadastre-se!</string>
@@ -88,7 +89,6 @@
     <string name="content_description_button_sim">Botão para confirmar exclusão de dados</string>
     <string name="content_description_button_nao">Botão para não confirmar exclusão de dados</string>
     <string name="content_description_campo_pesquisa">Campo para pesquisar as garagens por cidade</string>
-    <string name="content_description_button_pesquisa">Botão para pesquisar as garagens</string>
 
     <string name="ja_logado">Usuário logado</string>
     <string name="email_vazio">Campo do e-mail vazio</string>

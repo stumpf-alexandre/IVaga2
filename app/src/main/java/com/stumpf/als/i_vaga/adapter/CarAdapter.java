@@ -2,7 +2,6 @@ package com.stumpf.als.i_vaga.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
@@ -53,7 +52,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder>{
             }
         });
         holder.txtPlacaCarro.setText((context.getString(R.string.hint_placa)) + " " + item.getPlaca());
-        holder.txtPlacaCarro.setOnClickListener(new View.OnClickListener() {
+        holder.linearLayoutCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditCarActivity.class);
@@ -71,11 +70,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder>{
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         protected AppCompatTextView txtPlacaCarro;
-        protected LinearLayoutCompat linearLayout;
+        protected LinearLayoutCompat linearLayoutCar;
         public ViewHolder (View itemView) {
             super(itemView);
             txtPlacaCarro = itemView.findViewById(R.id.placaListaCarro);
-            linearLayout = itemView.findViewById(R.id.listaCar);
+            linearLayoutCar = itemView.findViewById(R.id.listaCar);
         }
     }
 }

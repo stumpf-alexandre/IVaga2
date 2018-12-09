@@ -32,7 +32,7 @@
                 android:id="@+id/nomeEdit"
                 style="@style/edit_text_cadastro"
                 android:hint="@string/hint_nome"
-                android:inputType="textCapSentences|textCapWords|textAutoComplete"
+                android:inputType="textCapSentences|textCapWords"
                 android:contentDescription="@string/content_description_nome"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
@@ -42,7 +42,7 @@
                 android:id="@+id/sobrenomeEdit"
                 style="@style/edit_text_cadastro"
                 android:hint="@string/hint_sobrenome"
-                android:inputType="textCapSentences|textCapWords|textAutoComplete"
+                android:inputType="textCapSentences|textCapWords"
                 android:contentDescription="@string/content_description_sobrenome"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout

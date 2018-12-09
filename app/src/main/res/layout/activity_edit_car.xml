@@ -33,7 +33,7 @@
                 style="@style/edit_text_cadastro"
                 android:drawableLeft="@drawable/ic_directions_car_black_24dp"
                 android:hint="@string/hint_placa"
-                android:inputType="textVisiblePassword"
+                android:inputType="textCapCharacters"
                 android:contentDescription="@string/content_description_placa"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.LinearLayoutCompat

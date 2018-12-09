@@ -16,59 +16,77 @@
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/ThemeSplash">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"
+        <activity
+            android:name=".activity.LoginActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.RegisterLoginActivity"
+        <activity
+            android:name=".activity.RegisterLoginActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.RegisterCarActivity"
+        <activity
+            android:name=".activity.RegisterCarActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.RegisterGaragActivity"
+        <activity
+            android:name=".activity.RegisterGaragActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.EditUserActivity"
+        <activity
+            android:name=".activity.EditUserActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.EditCarActivity"
+        <activity
+            android:name=".activity.EditCarActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.EditGarageActivity"
+        <activity
+            android:name=".activity.EditGarageActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.ListActivity"
+        <activity
+            android:name=".activity.ListActivity"
             android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.UserActivity"
-            android:theme="@style/ThemeUser"
-            android:parentActivityName=".activity.SplashActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SplashActivity"/>
+        <activity
+            android:name=".activity.UserActivity"
+            android:parentActivityName=".activity.SplashActivity"
+            android:theme="@style/ThemeUser">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
         </activity>
+        <activity android:name=".activity.CallMapsActivity"></activity>
     </application>
 
 </manifest>
