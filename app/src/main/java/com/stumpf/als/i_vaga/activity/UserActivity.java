@@ -72,6 +72,7 @@ public class UserActivity extends AppCompatActivity {
     private LinearLayoutManager linearManagerGarage;
     private Garage garagem;
     private Car carro;
+    private String key;
     private int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,17 +114,12 @@ public class UserActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fab.setVisibility(View.GONE);
-                    if(cont <=0){
-                        fab.setImageResource(R.drawable.ic_photo_camera_black_24dp);
+                    if (cont <= 0) {
                         abrirFoto();
-                        cont++;
-                        fab.setVisibility(View.VISIBLE);
                     }
                     else {
-                        fab.setImageResource(R.drawable.ic_backup_black_24dp);
                         uploadFotoUser();
-                        cont = 0;
+                        fab.setVisibility(View.GONE);
                     }
                 }
             });
@@ -299,18 +295,22 @@ public class UserActivity extends AppCompatActivity {
         });
     }
     private void abrirFoto(){
+        cont++;
+        fab.setImageResource(R.drawable.ic_photo_camera_black_24dp);
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        fab.setVisibility(View.GONE);
         startActivityForResult(Intent.createChooser(intent, getString(R.string.selecione_imagem)), 123);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         final int width = metrics.widthPixels / 2;
         final int height = metrics.heightPixels / 4;
         if (resultCode == Activity.RESULT_OK){
             if (requestCode == 123){
                 if (data != null) {
+                    fab.setVisibility(View.VISIBLE);
+                    fab.setImageResource(R.drawable.ic_backup_black_24dp);
                     Uri imagemSelecionada = data.getData();
                     Picasso.get().load(imagemSelecionada.toString()).resize(height, width).centerCrop().into(imagem);
                 }
@@ -321,9 +321,10 @@ public class UserActivity extends AppCompatActivity {
         }
     }
     private void uploadFotoUser(){
+        cont = 0;
         final DialogProgress dialogProgress = new DialogProgress();
         dialogProgress.show(getFragmentManager(),"");
-        final StorageReference montarImagem = storageReference.child("fotoPerfilUsuario/" + emailLogado + System.currentTimeMillis() + ".jpg");
+        final StorageReference montarImagem = storageReference.child("fotoPerfilUsuario/" + emailLogado + ".jpg");
         imagem.setDrawingCacheEnabled(true);
         imagem.buildDrawingCache();
         Bitmap bitmap = imagem.getDrawingCache();
@@ -345,8 +346,7 @@ public class UserActivity extends AppCompatActivity {
                     url_imagem = uri.toString();
                     usuario = new User();
                     usuario.setImagem(url_imagem);
-                    databaseFotoUser(usuario);
-                    Toast.makeText(UserActivity.this, getString(R.string.foto_cadastrada), Toast.LENGTH_LONG).show();
+
                 }
                 else {
                     dialogProgress.dismiss();
@@ -358,8 +358,9 @@ public class UserActivity extends AppCompatActivity {
     private boolean databaseFotoUser(final User usuario){
         String erro = "";
         try {
-            reference = ConfigurationFirebase.getFirebase();
-            reference.child("usuarios").child("imagem").setValue(usuario);
+            reference = ConfigurationFirebase.getFirebase().child("usuarios");
+            reference.child(key).setValue(usuario);
+            Toast.makeText(UserActivity.this, getString(R.string.foto_cadastrada), Toast.LENGTH_LONG).show();
         }catch (Exception e){
             erro = getString(R.string.erro_dados);
             Toast.makeText(this, getString(R.string.erro) + erro, Toast.LENGTH_LONG).show();
