@@ -55,7 +55,7 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listGar.clear();
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     garagem = postSnapshot.getValue(Garage.class);
                     listGar.add(garagem);
                 }
@@ -70,6 +70,6 @@ public class ListActivity extends AppCompatActivity {
     }
     private void abrirLogin(){
         finish();
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, UserActivity.class));
     }
 }

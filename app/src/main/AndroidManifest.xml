@@ -86,7 +86,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.SplashActivity" />
         </activity>
-        <activity android:name=".activity.CallMapsActivity"></activity>
+        <activity
+            android:name=".activity.CallMapsActivity"
+            android:parentActivityName=".activity.SplashActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SplashActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -63,12 +63,12 @@
     <string name="content_description_titulo_cadastro_carro">Pantalla de registro de datos del coche</string>
     <string name="content_description_titulo_edit_usuario">Pantalla de edición de datos de usuario</string>
     <string name="content_description_titulo_edit_carro">Pantalla de edición de datos del coche</string>
-    <string name="content_description_titulo_edit_garagem">Pantalla de edición de datos del garage</string>
+    <string name="content_description_titulo_edit_garagem">Pantalla de edición de datos del garaje</string>
     <string name="content_description_nome">Campo para introducir el nombre de usuario</string>
     <string name="content_description_sobrenome">Campo para escribir el apellido del usuario</string>
     <string name="content_description_valor">Campo para introducir el valor de una diaria del garaje</string>
     <string name="content_description_placa">Campo para escribir la placa del coche</string>
-    <string name="content_description_button_cadastro_garagem">Botón para registrar datos del garage</string>
+    <string name="content_description_button_cadastro_garagem">Botón para registrar datos del garaje</string>
     <string name="content_description_button_sair_cadastro_garagem">Botón para eliminar datos del garaje</string>
     <string name="content_description_rua">Campo para escribir la calle del garaje</string>
     <string name="content_description_numero">Campo para introducir el número de garaje</string>
@@ -127,10 +127,11 @@
     <string name="delet_dados">Datos borrados con éxito</string>
     <string name="selecione_imagem">Seleccione una imagen</string>
     <string name="num_excedido">Número de registros excedido!</string>
-    <string name="aguarde">Espere...</string>
+    <string name="aguarde">Espere....</string>
     <string name="vamos_la">¡Vamos allá!</string>
     <string name="nome_proprietario">Propietario:</string>
     <string name="endereco_proprietario">Dirección:</string>
     <string name="dinheiro">$</string>
     <string name="numero">Nº:</string>
+    <string name="lista_vazia">Lista vacía</string>
 </resources>

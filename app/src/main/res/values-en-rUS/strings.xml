@@ -126,11 +126,12 @@
     <string name="delet_dados">Data successfully deleted</string>
     <string name="selecione_imagem">Select an image</string>
     <string name="num_excedido">Number of registrations exceeded!</string>
-    <string name="aguarde">Wait...</string>
+    <string name="aguarde">Wait....</string>
     <string name="vamos_la">Come on!</string>
     <string name="nome_proprietario">Owner:</string>
     <string name="valor">Daily:</string>
     <string name="endereco_proprietario">Address:</string>
     <string name="dinheiro">$</string>
     <string name="numero">Nº:</string>
+    <string name="lista_vazia">" Empty list"</string>
 </resources>

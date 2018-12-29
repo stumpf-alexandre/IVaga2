@@ -247,7 +247,6 @@ public class UserActivity extends AppCompatActivity {
                     bundle.putString("imagem", usuario.getImagem());
                     intent.putExtras(bundle);
                     startActivity(intent);
-                    //finish();
                 }
             }
             @Override
@@ -256,11 +255,11 @@ public class UserActivity extends AppCompatActivity {
         });
     }
     private void abrirLogin(){
-        //finish();
+        finish();
         startActivity(new Intent(this, LoginActivity.class));
     }
     private void abrirList(){
-        //finish();
+        finish();
         startActivity(new Intent(this, ListActivity.class));
     }
     private void carregarImage(){
@@ -346,6 +345,7 @@ public class UserActivity extends AppCompatActivity {
                     url_imagem = uri.toString();
                     usuario = new User();
                     usuario.setImagem(url_imagem);
+                    databaseFotoUser(usuario);
 
                 }
                 else {
@@ -358,7 +358,7 @@ public class UserActivity extends AppCompatActivity {
     private boolean databaseFotoUser(final User usuario){
         String erro = "";
         try {
-            reference = ConfigurationFirebase.getFirebase().child("usuarios");
+            reference = ConfigurationFirebase.getFirebase().child("usuarios").child("imagem");
             reference.child(key).setValue(usuario);
             Toast.makeText(UserActivity.this, getString(R.string.foto_cadastrada), Toast.LENGTH_LONG).show();
         }catch (Exception e){

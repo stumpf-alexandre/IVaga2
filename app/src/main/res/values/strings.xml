@@ -128,8 +128,9 @@
     <string name="delet_dados">Dados deletados com sucesso</string>
     <string name="selecione_imagem">Selecione uma imagem</string>
     <string name="num_excedido">Número de cadastros excedido!</string>
-    <string name="aguarde">Aguarde...</string>
+    <string name="aguarde">Aguarde....</string>
     <string name="vamos_la">Vamos Lá!</string>
     <string name="nome_proprietario">Proprietario:</string>
     <string name="endereco_proprietario">Endereço:</string>
+    <string name="lista_vazia">Lista vazia</string>
 </resources>
