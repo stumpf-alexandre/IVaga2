@@ -27,65 +27,63 @@
             android:contentDescription="@string/content_description_titulo_cadastro"/>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
-            android:layout_marginTop="@dimen/fab_margin">
+            android:layout_marginTop="@dimen/fab_margin"
+            android:contentDescription="@string/content_description_email">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/emailRegister"
                 style="@style/edit_text_cadastro"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableStart="@drawable/ic_email_black_24dp"
                 android:hint="@string/hint_email"
-                android:inputType="textEmailAddress|textWebEmailAddress|textAutoComplete"
-                android:contentDescription="@string/content_description_email"/>
+                android:inputType="textEmailAddress|textWebEmailAddress|textAutoComplete"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorPrimary"
-            android:layout_marginTop="@dimen/layout_margin">
+            android:layout_marginTop="@dimen/layout_margin"
+            android:contentDescription="@string/content_description_senha">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/senhaRegister"
                 style="@style/edit_text_cadastro"
-                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
                 android:drawableStart="@drawable/ic_lock_open_black_24dp"
                 android:hint="@string/hint_senha"
-                android:inputType="textPassword"
-                android:contentDescription="@string/content_description_senha"/>
+                android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorPrimary"
-            android:layout_marginTop="@dimen/layout_margin">
+            android:layout_marginTop="@dimen/layout_margin"
+            android:contentDescription="@string/content_description_confirmar_senha_cadastro">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/senhaConfirmarRegister"
                 android:layout_marginBottom="@dimen/layout_margin"
                 style="@style/edit_text_cadastro"
-                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
                 android:drawableStart="@drawable/ic_lock_open_black_24dp"
                 android:hint="@string/hint_confirmar_senha"
-                android:inputType="textPassword"
-                android:contentDescription="@string/content_description_confirmar_senha_cadastro"/>
+                android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
-            android:layout_marginTop="@dimen/um">
+            android:layout_marginTop="@dimen/um"
+            android:contentDescription="@string/content_description_nome">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/nomeRegister"
                 style="@style/edit_text_cadastro"
-                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/hint_nome"
-                android:inputType="textCapSentences|textCapWords"
-                android:contentDescription="@string/content_description_nome"/>
+                android:inputType="textCapSentences|textCapWords"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
-            android:layout_marginTop="@dimen/layout_margin">
+            android:layout_marginTop="@dimen/layout_margin"
+            android:contentDescription="@string/content_description_sobrenome">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/sobrenomeRegister"
                 style="@style/edit_text_cadastro"
-                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:drawableStart="@drawable/ic_person_black_24dp"
                 android:hint="@string/hint_sobrenome"
-                android:inputType="textCapSentences|textCapWords"
-                android:contentDescription="@string/content_description_sobrenome"/>
+                android:inputType="textCapSentences|textCapWords"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -98,7 +96,6 @@
                 android:id="@+id/btnRegisterLogin"
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
-                android:layout_weight="1"
                 android:foreground="?attr/selectableItemBackground"
                 app:cardCornerRadius="@dimen/dois"
                 app:cardElevation="@dimen/layout_margin"

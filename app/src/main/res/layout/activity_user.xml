@@ -31,7 +31,8 @@
                 android:src="@drawable/ic_person_black_24dp"
                 app:layout_collapseMode="parallax"
                 android:scaleType="centerCrop"
-                android:fitsSystemWindows="true"/>
+                android:fitsSystemWindows="true"
+                android:contentDescription="@null"/>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
@@ -115,13 +116,13 @@
         android:id="@+id/floatingButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:focusable="true"
         android:clickable="true"
         app:fabSize="mini"
         android:backgroundTint="@color/colorFab"
         app:borderWidth="0dp"
         android:layout_marginBottom="@dimen/um"
         android:layout_marginEnd="@dimen/layout_margin"
-        android:layout_marginRight="@dimen/layout_margin"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|right|end"
         android:contentDescription="@string/content_description_button_upload"/>

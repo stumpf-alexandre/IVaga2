@@ -27,15 +27,15 @@
             android:textStyle="bold" />
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
-            android:layout_marginTop="@dimen/layout_margin">
+            android:layout_marginTop="@dimen/layout_margin"
+            android:contentDescription="@string/content_description_rua">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/ruaRegisterGarage"
                 style="@style/edit_text_cadastro"
                 android:gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_home_black_24dp"
+                android:drawableStart="@drawable/ic_home_black_24dp"
                 android:hint="@string/hint_rua"
-                android:inputType="textCapSentences|textCapWords"
-                android:contentDescription="@string/content_description_rua"/>
+                android:inputType="textCapSentences|textCapWords"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -45,26 +45,26 @@
             <android.support.design.widget.TextInputLayout
                 style="@style/edit_text_input_layout"
                 android:layout_weight="2"
-                android:layout_marginRight="@dimen/um">
+                android:layout_marginEnd="@dimen/um"
+                android:contentDescription="@string/content_description_numero">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/numeroRegisterGarage"
                     style="@style/edit_text_cadastro"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
+                    android:drawableStart="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_numero"
-                    android:inputType="number"
-                    android:contentDescription="@string/content_description_numero"/>
+                    android:inputType="number"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 style="@style/edit_text_input_layout"
                 android:layout_weight="1"
-                android:layout_marginLeft="@dimen/um">
+                android:layout_marginStart="@dimen/um"
+                android:contentDescription="@string/content_description_complemento">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/complementoRegisterGarage"
                     style="@style/edit_text_cadastro"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
+                    android:drawableStart="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_complemento"
-                    android:inputType="textCapSentences|textCapWords"
-                    android:contentDescription="@string/content_description_complemento"/>
+                    android:inputType="textCapSentences|textCapWords"/>
             </android.support.design.widget.TextInputLayout>
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.v7.widget.LinearLayoutCompat
@@ -75,38 +75,38 @@
             <android.support.design.widget.TextInputLayout
                 style="@style/edit_text_input_layout"
                 android:layout_weight="1"
-                android:layout_marginRight="@dimen/um">
+                android:layout_marginEnd="@dimen/um"
+                android:contentDescription="@string/content_description_bairro">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/bairroRegisterGarage"
                     style="@style/edit_text_cadastro"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
+                    android:drawableStart="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_bairro"
-                    android:inputType="textCapSentences|textCapWords"
-                    android:contentDescription="@string/content_description_bairro"/>
+                    android:inputType="textCapSentences|textCapWords"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 style="@style/edit_text_input_layout"
                 android:layout_weight="1"
-                android:layout_marginLeft="@dimen/um">
+                android:layout_marginStart="@dimen/um"
+                android:contentDescription="@string/content_description_cidade">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/cidadeRegisterGarage"
                     style="@style/edit_text_cadastro"
-                    android:drawableLeft="@drawable/ic_home_black_24dp"
+                    android:drawableStart="@drawable/ic_home_black_24dp"
                     android:hint="@string/hint_cidade"
-                    android:inputType="textCapSentences|textCapWords"
-                    android:contentDescription="@string/content_description_cidade"/>
+                    android:inputType="textCapSentences|textCapWords"/>
             </android.support.design.widget.TextInputLayout>
         </android.support.v7.widget.LinearLayoutCompat>
         <android.support.design.widget.TextInputLayout
             style="@style/edit_text_input_layout"
-            android:layout_marginTop="@dimen/margin">
+            android:layout_marginTop="@dimen/margin"
+            android:contentDescription="@string/content_description_cidade">
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/valoRegisterGarage"
                 style="@style/edit_text_cadastro"
-                android:drawableLeft="@drawable/ic_attach_money_black_24dp"
+                android:drawableStart="@drawable/ic_attach_money_black_24dp"
                 android:hint="@string/hint_valor"
-                android:inputType="numberDecimal"
-                android:contentDescription="@string/content_description_cidade"/>
+                android:inputType="numberDecimal"/>
         </android.support.design.widget.TextInputLayout>
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 android:id="@+id/switch_on_offRegisterGarage"
                 android:layout_width="@dimen/expanded_start"
                 android:layout_height="@dimen/expanded_start"
-                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
                 android:textOff="@string/f"
                 android:textOn="@string/n"/>
             <android.support.v7.widget.AppCompatTextView
@@ -125,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/text_size_list"
+                android:layout_marginStart="@dimen/text_size_list"
                 android:textSize="@dimen/text_size"
                 android:textColor="@color/colorPrimary"/>
         </android.support.v7.widget.LinearLayoutCompat>
